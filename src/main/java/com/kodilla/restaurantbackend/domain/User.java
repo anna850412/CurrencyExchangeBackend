@@ -16,11 +16,14 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue
-    @Column(unique = true)
+    @Column(name = "USER_ID", unique = true)
     private Long id;
     @NotNull
     @Column(name = "USERNAME", unique = true)
     private String username;
+    @NotNull
+    @Column(name = "LOGIN", unique = true)
+    private String login;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name ="CART_ID")
     private Cart cart;

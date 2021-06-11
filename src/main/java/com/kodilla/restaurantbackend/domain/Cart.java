@@ -15,11 +15,12 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name ="CARTS")
+@Entity
+@Table(name ="CARTS")
 public class Cart {
     @Id
     @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @Column(name = "CART_ID", unique = true)
     private Long cartId;
     @OneToOne(mappedBy = "cart", fetch = FetchType.LAZY)
     private User user;

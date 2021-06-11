@@ -16,12 +16,12 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @Column(name = "ORDER_ID", unique = true)
     private Long id;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     private User user;
 
     @NotNull
