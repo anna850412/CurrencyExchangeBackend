@@ -23,8 +23,8 @@ public class MenuParserClient {
 //                "https://https://menuparser.com/",
 //                MenuParserDto[].class
 //        );
-        URI url = UriComponentsBuilder.fromHttpUrl("https://https://menuparser.com/")
-                .queryParam("fields", "name, amount, currency")
+        URI url = UriComponentsBuilder.fromHttpUrl("https://menuparser.com/")
+                .queryParam("items", "name, amount, currency")
                 .build().encode().toUri();
         MenuParserDto[] menuResponse = restTemplate.getForObject(url, MenuParserDto[].class);
         if(menuResponse != null){

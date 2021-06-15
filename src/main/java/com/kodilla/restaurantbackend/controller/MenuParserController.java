@@ -22,8 +22,9 @@ public class MenuParserController {
     public List<MenuParserDto> getMenus() {
         List<MenuParserDto> parserMenus = menuParserClient.getMenus();
         parserMenus.forEach(menuParserDto -> {
-            System.out.println("product name" + menuParserDto.getName() + "amount" + menuParserDto.getAmount()
-                    + "in currency" + menuParserDto.getCurrency());
+            System.out.println("product name" + menuParserDto.getItems());
+//                    + "amount" + menuParserDto.getAmount()
+//                    + "in currency" + menuParserDto.getCurrency());
         });
         return parserMenus;
     }
