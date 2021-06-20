@@ -18,5 +18,5 @@ public class ExchangeRatesLatestDto {
     @JsonProperty("date")
     private String date;
     @JsonProperty("symbols")
-    private List<Rates> symbols;
+    private List<Rate> symbols;
 }

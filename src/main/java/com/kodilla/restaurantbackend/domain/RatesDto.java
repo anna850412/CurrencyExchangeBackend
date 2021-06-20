@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Rates {
+public class RatesDto {
     @JsonProperty("rates")
-    private String rate;
+    private Long rate;
 }
