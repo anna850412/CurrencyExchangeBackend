@@ -14,7 +14,13 @@ public class Rate {
     @GeneratedValue
     @Column(name = "ID")
     private Long id;
-    private Long rate;
+//    private Long rate;
+    @Column(name = "PLN")
+    private Double pln;
+    @Column(name = "USD")
+    private Double usd;
+    @Column(name = "GBP")
+    private Double gbp;
     @ManyToOne
     @JoinColumn(name = "EXCHANGE_RATES_LATESTS_ID")
     @NotNull

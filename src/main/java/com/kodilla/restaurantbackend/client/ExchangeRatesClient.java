@@ -20,12 +20,11 @@ public class ExchangeRatesClient {
     private final ExchangeRatesConfig exchangeRatesConfig;
 
     public List<ExchangeRatesLatestDto> getExchangeRateLatest() {
-        URI url = UriComponentsBuilder.fromHttpUrl(exchangeRatesConfig.getExchangeRatesLatestEndpoint() + "?access_key=" + exchangeRatesConfig.getExchangeRatesAppKey())
+        URI url = UriComponentsBuilder.fromHttpUrl(exchangeRatesConfig.getExchangeRatesLatestEndpoint())
                 .queryParam("access_key", exchangeRatesConfig.getExchangeRatesAppKey())
                 .queryParam("base", exchangeRatesConfig.getExchangeRatesBase())
-                .queryParam("symbols", "all"
-//                        exchangeRatesConfig.getExchangeRatesSymbols().equals("PLN")
-                )
+                .queryParam("symbols", exchangeRatesConfig.getExchangeRatesSymbols())
+//                        "PLN, USD, GBP"
                 .build()
                 .encode()
                 .toUri();

@@ -29,7 +29,7 @@ public class ExchangeRatesController {
             System.out.println(exchangeRatesLatestDto.getBase() + "" + exchangeRatesLatestDto.getDate());
             System.out.println("This exchange rates contains lists: ");
             exchangeRatesLatestDto.getSymbols().forEach(Rate ->{
-                System.out.println(Rate.getRate());
+                System.out.println(Rate.getPln() + Rate.getGbp() + Rate.getUsd());
             });
         });
     }
