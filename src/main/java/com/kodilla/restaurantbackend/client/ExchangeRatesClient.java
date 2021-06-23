@@ -23,7 +23,7 @@ public class ExchangeRatesClient {
         URI url = UriComponentsBuilder.fromHttpUrl(exchangeRatesConfig.getExchangeRatesLatestEndpoint())
                 .queryParam("access_key", exchangeRatesConfig.getExchangeRatesAppKey())
                 .queryParam("base", exchangeRatesConfig.getExchangeRatesBase())
-                .queryParam("symbols", exchangeRatesConfig.getExchangeRatesSymbols())
+                .queryParam("symbols", exchangeRatesConfig.getExchangeRatesSymbols()    )
 //                        "PLN, USD, GBP"
                 .build()
                 .encode()

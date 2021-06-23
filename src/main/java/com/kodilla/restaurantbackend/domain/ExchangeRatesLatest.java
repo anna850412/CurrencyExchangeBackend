@@ -1,5 +1,6 @@
 package com.kodilla.restaurantbackend.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "EXCHANGE_RATES_LATESTS")
         public class ExchangeRatesLatest {
