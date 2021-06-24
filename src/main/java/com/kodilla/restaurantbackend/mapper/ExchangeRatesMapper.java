@@ -14,33 +14,61 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class ExchangeRatesMapper {
 
-    public List<ExchangeRatesLatestDto> mapToExchangeRatesLatestDtoList(final List<ExchangeRatesLatest> exchangeRatesLatestList){
-    return exchangeRatesLatestList.stream()
-            .map(this::mapToExchangeRatesLatestDto)
-            .collect(Collectors.toList());}
+    public Rate mapToRates(RatesDto ratesDto) {
+        return new Rate(
+                ratesDto.getPln(),
+                ratesDto.getGbp(),
+                ratesDto.getUsd()
+        );
+    }
 
-    private ExchangeRatesLatestDto mapToExchangeRatesLatestDto(ExchangeRatesLatest exchangeRatesLatest) {
+    public RatesDto mapToRatesDto(Rate rate) {
+        return new RatesDto(
+                rate.getPln(),
+                rate.getGbp(),
+                rate.getUsd()
+        );
+    }
+
+    public ExchangeRatesLatestDto mapToExchangeRatesLatestDto(ExchangeRatesLatest exchangeRatesLatest) {
         return new ExchangeRatesLatestDto(
+                exchangeRatesLatest.isSuccess(),
+                exchangeRatesLatest.getTimestamp(),
                 exchangeRatesLatest.getBase(),
                 exchangeRatesLatest.getDate(),
-                exchangeRatesLatest.getSymbols());
+                mapToRatesDto(exchangeRatesLatest.getRate()));
+    }
+
+   public ExchangeRatesLatest mapToExchangeRatesLatest(ExchangeRatesLatestDto exchangeRatesLatestDto) {
+        return new ExchangeRatesLatest(
+                exchangeRatesLatestDto.isSuccess(),
+                exchangeRatesLatestDto.getTimestamp(),
+                exchangeRatesLatestDto.getBase(),
+                exchangeRatesLatestDto.getDate(),
+                mapToRates(exchangeRatesLatestDto.getRatesDto()));
+    }
+
+    public List<ExchangeRatesLatestDto> mapToExchangeRatesLatestDtoList(final List<ExchangeRatesLatest> exchangeRatesLatestList) {
+        return exchangeRatesLatestList.stream()
+                .map(this::mapToExchangeRatesLatestDto)
+                .collect(Collectors.toList());
     }
 
     public List<ExchangeRatesLatest> mapToExchangeRatesLatestList(final List<ExchangeRatesLatestDto> exchangeRatesLatestDtoList) {
-    return exchangeRatesLatestDtoList.stream()
-            .map(this::mapToExchangeRatesLatest)
-            .collect(Collectors.toList());
+        return exchangeRatesLatestDtoList.stream()
+                .map(this::mapToExchangeRatesLatest)
+                .collect(Collectors.toList());
     }
+
     public List<Rate> mapToList(final List<RatesDto> ratesListDto) {
         return ratesListDto.stream()
                 .map(rate -> new Rate(rate.getPln(), rate.getUsd(), rate.getGbp()))
                 .collect(toList());
     }
-    private ExchangeRatesLatest mapToExchangeRatesLatest(ExchangeRatesLatestDto exchangeRatesLatestDto) {
-        return new ExchangeRatesLatest(
-                exchangeRatesLatestDto.getBase(),
-                exchangeRatesLatestDto.getDate(),
-                mapToList(exchangeRatesLatestDto.getSymbols())
-        )
+
+    public List<RatesDto> mapToRatesDtoList(final List<Rate> ratesList) {
+        return ratesList.stream()
+                .map(rateDto -> new RatesDto(rateDto.getGbp(), rateDto.getPln(), rateDto.getUsd()))
+                .collect(toList());
     }
 }

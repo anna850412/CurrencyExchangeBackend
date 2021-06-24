@@ -14,18 +14,18 @@ import javax.validation.constraints.NotNull;
 public class Rate {
     @Id
     @GeneratedValue
-    @Column(name = "ID")
+    @Column(name = "RATES_ID")
     private Long id;
-//    private Long rate;
     @Column(name = "PLN")
     private Double pln;
     @Column(name = "USD")
     private Double usd;
     @Column(name = "GBP")
     private Double gbp;
-    @ManyToOne
-    @JoinColumn(name = "EXCHANGE_RATES_LATESTS_ID")
-    @NotNull
+//    @ManyToOne
+//    @JoinColumn(name = "EXCHANGE_RATES_LATESTS_ID")
+//    @NotNull
+    @OneToOne(mappedBy = "rate", fetch = FetchType.LAZY)
     private ExchangeRatesLatest exchangeRatesLatest;
 
     public Rate(Double pln, Double usd, Double gbp) {

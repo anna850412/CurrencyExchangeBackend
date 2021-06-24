@@ -19,7 +19,7 @@ public class ExchangeRatesClient {
     private final RestTemplate restTemplate;
     private final ExchangeRatesConfig exchangeRatesConfig;
 
-    public List<ExchangeRatesLatestDto> getExchangeRateLatest() {
+    public ExchangeRatesLatestDto getExchangeRateLatest() {
         URI url = UriComponentsBuilder.fromHttpUrl(exchangeRatesConfig.getExchangeRatesLatestEndpoint())
                 .queryParam("access_key", exchangeRatesConfig.getExchangeRatesAppKey())
                 .queryParam("base", exchangeRatesConfig.getExchangeRatesBase())
@@ -28,12 +28,10 @@ public class ExchangeRatesClient {
                 .build()
                 .encode()
                 .toUri();
-        ExchangeRatesLatestDto[] exchangeRatesLatestResponse = restTemplate.getForObject(url, ExchangeRatesLatestDto[].class);
+        ExchangeRatesLatestDto exchangeRatesLatestResponse = restTemplate.getForObject(url, ExchangeRatesLatestDto.class);
         if(exchangeRatesLatestResponse!=null){
-            return Arrays.asList(exchangeRatesLatestResponse);
-        } return Optional.ofNullable(exchangeRatesLatestResponse)
-                .map(Arrays::asList)
-                .orElse(Collections.emptyList());
+            return exchangeRatesLatestResponse;
+        } return Optional.ofNullable(exchangeRatesLatestResponse).get();
 
     }
 }

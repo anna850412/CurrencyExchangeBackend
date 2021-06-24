@@ -13,10 +13,14 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExchangeRatesLatestDto {
+    @JsonProperty("success")
+    private boolean success;
+    @JsonProperty("timestamp")
+    private int timestamp;
     @JsonProperty("base")
     private String base;
     @JsonProperty("date")
     private String date;
-    @JsonProperty("symbols")
-    private List<Rate> symbols;
+    @JsonProperty("rates")
+    private RatesDto ratesDto;
 }

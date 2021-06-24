@@ -2,19 +2,18 @@ package com.kodilla.restaurantbackend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RatesDto {
     @JsonProperty("PLN")
-    private Double pln;
+    private double pln;
     @JsonProperty("USD")
-    private Double usd;
+    private double usd;
     @JsonProperty("GBP")
-    private Double gbp;
+    private double gbp;
 }

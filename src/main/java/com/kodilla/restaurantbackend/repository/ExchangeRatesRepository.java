@@ -15,8 +15,6 @@ public interface ExchangeRatesRepository extends CrudRepository<ExchangeRatesLat
 
     ExchangeRatesLatest findByBase(String base);
 
-    List<Rate> findBySymbols(List<Rate> symbols);
-
     ExchangeRatesLatest findByDate(String date);
 
     @Override

@@ -16,25 +16,28 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ExchangeRatesService {
     private final ExchangeRatesRepository exchangeRatesRepository;
-    public List<ExchangeRatesLatest> getAllRates(){
+
+    public List<ExchangeRatesLatest> getAllRates() {
         return exchangeRatesRepository.findAll();
     }
-    public ExchangeRatesLatest getBaseRate(final String base){
-       return exchangeRatesRepository.findByBase(base);
+
+    public ExchangeRatesLatest getBaseRate(final String base) {
+        return exchangeRatesRepository.findByBase(base);
     }
-    public List<Rate> getSymbols(final List<Rate> symbols){
-        return exchangeRatesRepository.findBySymbols(symbols);
-    }
-    public ExchangeRatesLatest getDate(final String date){
+
+    public ExchangeRatesLatest getDate(final String date) {
         return exchangeRatesRepository.findByDate(date);
     }
- public Optional<ExchangeRatesLatest> findLatestRateById(final Long latestId){
+
+    public Optional<ExchangeRatesLatest> findLatestRateById(final Long latestId) {
         return exchangeRatesRepository.findById(latestId);
- }
- public void deleteExchangeRatesById(final Long latestId){
-      exchangeRatesRepository.deleteById(latestId);
- }
- public ExchangeRatesLatest saveLatestExchangeRate(final ExchangeRatesLatest exchangeRatesLatest){
+    }
+
+    public void deleteExchangeRatesById(final Long latestId) {
+        exchangeRatesRepository.deleteById(latestId);
+    }
+
+    public ExchangeRatesLatest saveLatestExchangeRate(final ExchangeRatesLatest exchangeRatesLatest) {
         return exchangeRatesRepository.save(exchangeRatesLatest);
- }
+    }
 }

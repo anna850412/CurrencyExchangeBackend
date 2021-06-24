@@ -22,7 +22,12 @@ public class ExchangeRateFasade {
     private ExchangeRatesValidator exchangeRatesValidator;
     @Autowired
     private ExchangeRatesService exchangeRatesService;
-    public List<ExchangeRatesLatestDto> fetchExchangeRatesLatest(){
-        List<ExchangeRatesLatest> exchangeRatesLatests = exchangeRatesMapper.mapToExchangeRatesLatest()
+
+    public ExchangeRatesLatestDto fetchExchangeRatesLatest() {
+        ExchangeRatesLatest exchangeRatesLatests = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesService.getAllRates());
+        ExchangeRatesLatest filteredExchangeRatesLatests = exchangeRatesValidator.validateExchangeRates(exchangeRatesLatests);
+
+    return exchangeRatesMapper.mapToExchangeRatesLatestDto(filteredExchangeRatesLatests);
     }
-}
+    }
+

@@ -15,22 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/exchangeRates")
+@RequestMapping("/v1/exchangeRates")
 @RequiredArgsConstructor
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class ExchangeRatesController {
 
     private final ExchangeRatesClient exchangeRatesClient;
 
     @RequestMapping(method = RequestMethod.GET, value = "/getLatestRates")
-    public void getLatestExchangeRates() {
-        List<ExchangeRatesLatestDto> latest = exchangeRatesClient.getExchangeRateLatest();
-        latest.forEach(exchangeRatesLatestDto -> {
-            System.out.println(exchangeRatesLatestDto.getBase() + "" + exchangeRatesLatestDto.getDate());
-            System.out.println("This exchange rates contains lists: ");
-            exchangeRatesLatestDto.getSymbols().forEach(Rate ->{
-                System.out.println(Rate.getPln() + Rate.getGbp() + Rate.getUsd());
-            });
-        });
+    public ExchangeRatesLatestDto getLatestExchangeRates() {
+        ExchangeRatesLatestDto latest = exchangeRatesClient.getExchangeRateLatest();
+        System.out.println("base currency is " + latest.getBase() + " " +  "from date " + latest.getDate());
+        System.out.println("This exchange rates contains currencies: ");
+        System.out.println("GBP" + " " + latest.getRatesDto().getGbp() + " " + "PLN " + " " + latest.getRatesDto().getPln()
+                + " " + "USD " + " " + latest.getRatesDto().getUsd());
+        return latest;
     }
 }
+
