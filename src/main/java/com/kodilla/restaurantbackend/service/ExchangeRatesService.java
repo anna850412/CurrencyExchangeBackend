@@ -16,11 +16,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ExchangeRatesService {
     private final ExchangeRatesRepository exchangeRatesRepository;
+    private final ExchangeRatesClient exchangeRatesClient;
 
     public List<ExchangeRatesLatest> getAllRates() {
         return exchangeRatesRepository.findAll();
     }
-
+    public ExchangeRatesLatestDto getAllRatesDto() {
+        return exchangeRatesClient.getExchangeRateLatest();
+    }
     public ExchangeRatesLatest getBaseRate(final String base) {
         return exchangeRatesRepository.findByBase(base);
     }

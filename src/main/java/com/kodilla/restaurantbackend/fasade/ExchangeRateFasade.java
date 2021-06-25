@@ -24,10 +24,10 @@ public class ExchangeRateFasade {
     private ExchangeRatesService exchangeRatesService;
 
     public ExchangeRatesLatestDto fetchExchangeRatesLatest() {
-        ExchangeRatesLatest exchangeRatesLatests = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesService.getAllRates());
+        ExchangeRatesLatest exchangeRatesLatests = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesService.getAllRatesDto());
         ExchangeRatesLatest filteredExchangeRatesLatests = exchangeRatesValidator.validateExchangeRates(exchangeRatesLatests);
 
-    return exchangeRatesMapper.mapToExchangeRatesLatestDto(filteredExchangeRatesLatests);
+        return exchangeRatesMapper.mapToExchangeRatesLatestDto(filteredExchangeRatesLatests);
     }
-    }
+}
 

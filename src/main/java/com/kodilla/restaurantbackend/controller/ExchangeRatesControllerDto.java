@@ -3,6 +3,7 @@ package com.kodilla.restaurantbackend.controller;
 import com.kodilla.restaurantbackend.client.ExchangeRatesClient;
 import com.kodilla.restaurantbackend.domain.ExchangeRatesLatest;
 import com.kodilla.restaurantbackend.domain.ExchangeRatesLatestDto;
+import com.kodilla.restaurantbackend.fasade.ExchangeRateFasade;
 import com.kodilla.restaurantbackend.mapper.ExchangeRatesMapper;
 import com.kodilla.restaurantbackend.service.ExchangeRatesService;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +19,16 @@ import java.util.List;
 @RequestMapping("/v1/exchangeRates")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
-public class ExchangeRatesController {
-
+public class ExchangeRatesControllerDto {
+    @Autowired
+    private final ExchangeRateFasade exchangeRateFasade;
     private final ExchangeRatesClient exchangeRatesClient;
 
     @RequestMapping(method = RequestMethod.GET, value = "/getLatestRates")
     public ExchangeRatesLatestDto getLatestExchangeRates() {
-        ExchangeRatesLatestDto latest = exchangeRatesClient.getExchangeRateLatest();
+
+//        ExchangeRatesLatestDto latest = exchangeRatesClient.getExchangeRateLatest();
+        ExchangeRatesLatestDto latest = exchangeRateFasade.fetchExchangeRatesLatest();
         System.out.println("base currency is " + latest.getBase() + " " +  "from date " + latest.getDate());
         System.out.println("This exchange rates contains currencies: ");
         System.out.println("GBP" + " " + latest.getRatesDto().getGbp() + " " + "PLN " + " " + latest.getRatesDto().getPln()
