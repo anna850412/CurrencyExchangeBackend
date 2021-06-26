@@ -5,6 +5,7 @@ import com.kodilla.restaurantbackend.domain.ExchangeRatesLatestDto;
 import com.kodilla.restaurantbackend.mapper.ExchangeRatesMapper;
 import com.kodilla.restaurantbackend.repository.ExchangeRatesRepository;
 import com.kodilla.restaurantbackend.service.ExchangeRatesService;
+import com.kodilla.restaurantbackend.service.ExchangeRatesServiceDto;
 import com.kodilla.restaurantbackend.validator.ExchangeRatesValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +22,10 @@ public class ExchangeRateFasade {
     @Autowired
     private ExchangeRatesValidator exchangeRatesValidator;
     @Autowired
-    private ExchangeRatesService exchangeRatesService;
+    private ExchangeRatesServiceDto exchangeRatesServiceDto;
 
     public ExchangeRatesLatestDto fetchExchangeRatesLatest() {
-        ExchangeRatesLatest exchangeRatesLatests = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesService.getAllRatesDto());
+        ExchangeRatesLatest exchangeRatesLatests = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesServiceDto.getAllRatesDto());
         ExchangeRatesLatest filteredExchangeRatesLatests = exchangeRatesValidator.validateExchangeRates(exchangeRatesLatests);
 
         return exchangeRatesMapper.mapToExchangeRatesLatestDto(filteredExchangeRatesLatests);
