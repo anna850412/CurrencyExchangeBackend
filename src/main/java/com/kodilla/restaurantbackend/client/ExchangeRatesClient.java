@@ -1,9 +1,10 @@
 package com.kodilla.restaurantbackend.client;
 
 import com.kodilla.restaurantbackend.config.ExchangeRatesConfig;
+import com.kodilla.restaurantbackend.domain.CreatedRateDto;
 import com.kodilla.restaurantbackend.domain.ExchangeRatesLatestDto;
+import com.kodilla.restaurantbackend.domain.RatesDto;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.boot.model.relational.Loggable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -45,5 +46,15 @@ public class ExchangeRatesClient {
                 .encode()
                 .toUri();
         return url;
+    }
+    public CreatedRateDto createNewRate(RatesDto ratesDto){
+        URI url =UriComponentsBuilder.fromHttpUrl(exchangeRatesConfig.getExchangeRatesLatestEndpoint())
+                .queryParam("access_key", exchangeRatesConfig.getExchangeRatesAppKey())
+                .queryParam("base", exchangeRatesConfig.getExchangeRatesBase())
+                .queryParam("symbols", exchangeRatesConfig.getExchangeRatesSymbols())
+                .build()
+                .encode()
+                .toUri();
+        return restTemplate.postForObject(url, null, CreatedRateDto.class);
     }
 }

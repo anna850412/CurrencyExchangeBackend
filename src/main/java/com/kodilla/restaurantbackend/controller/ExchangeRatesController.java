@@ -33,13 +33,13 @@ public class ExchangeRatesController {
         return exchangeRatesService.getDate(date);
     }
 
-    @GetMapping(value = "/rates/{rateId}")
+    @GetMapping(value = "/rates/{latestId}")
     public ExchangeRatesLatestDto getRatesId(@PathVariable Long latestId) throws RatesNotFoundException {
         return exchangeRatesMapper.mapToExchangeRatesLatestDto(
                 exchangeRatesService.findLatestRateById(latestId).orElseThrow(RatesNotFoundException::new));
     }
 
-    @DeleteMapping(value = "/deleteRates/{rateId}")
+    @DeleteMapping(value = "/deleteRates/{latestId}")
     public void deleteRates(@PathVariable Long latestId) {
         exchangeRatesService.deleteExchangeRatesById(latestId);
     }
@@ -51,7 +51,7 @@ public class ExchangeRatesController {
                         exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto)));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/rates", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/createRates", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createRate(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
         exchangeRatesService.saveLatestExchangeRate(exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto));
     }

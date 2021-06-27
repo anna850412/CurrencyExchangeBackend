@@ -3,7 +3,6 @@ package com.kodilla.restaurantbackend.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -22,10 +21,10 @@ public class Rate {
     private Double usd;
     @Column(name = "GBP")
     private Double gbp;
-//    @ManyToOne
+    //    @ManyToOne
 //    @JoinColumn(name = "EXCHANGE_RATES_LATESTS_ID")
 //    @NotNull
-    @OneToOne(mappedBy = "rate", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "rate", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ExchangeRatesLatest exchangeRatesLatest;
 
     public Rate(Double pln, Double usd, Double gbp) {
