@@ -26,7 +26,7 @@ public class MealClient {
     public List<MealDto> getMealsList(){
         URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
                 .queryParam("apiKey", mealConfig.getMealAppKey())
-                .queryParam("random", "random.php")
+                .queryParam("random", "/random.php")
                 .encode().build().toUri();
         MealDto[] mealResponse = restTemplate.getForObject(url, MealDto[].class);
 //        return getMealsList();

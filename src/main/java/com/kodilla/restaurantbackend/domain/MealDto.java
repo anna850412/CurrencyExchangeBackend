@@ -34,32 +34,32 @@ public class MealDto {
     public String strIngredient5;
     @JsonProperty("INGREDIENT6")
     public String strIngredient6;
-    @Column(name = "INGREDIENT7")
+    @JsonProperty("INGREDIENT7")
     public String strIngredient7;
-    @Column(name = "INGREDIENT8")
+    @JsonProperty("INGREDIENT8")
     public String strIngredient8;
-    @Column(name = "INGREDIENT9")
+    @JsonProperty("INGREDIENT9")
     public String strIngredient9;
-    @Column(name = "INGREDIENT10")
+    @JsonProperty("INGREDIENT10")
     public String strIngredient10;
-    @Column(name = "INGREDIENT11")
+    @JsonProperty("INGREDIENT11")
     public String strIngredient11;
-    @Column(name = "INGREDIENT12")
+    @JsonProperty("INGREDIENT12")
     public String strIngredient12;
-    @Column(name = "INGREDIENT13")
+    @JsonProperty("INGREDIENT13")
     public String strIngredient13;
-    @Column(name = "INGREDIENT14")
+    @JsonProperty("INGREDIENT14")
     public String strIngredient14;
-    @Column(name = "INGREDIENT15")
+    @JsonProperty("INGREDIENT15")
     public String strIngredient15;
-    @Column(name = "INGREDIENT16")
+    @JsonProperty("INGREDIENT16")
     public String strIngredient16;
-    @Column(name = "INGREDIENT17")
+    @JsonProperty("INGREDIENT17")
     public String strIngredient17;
-    @Column(name = "INGREDIENT18")
+    @JsonProperty("INGREDIENT18")
     public String strIngredient18;
-    @Column(name = "INGREDIENT19")
+    @JsonProperty("INGREDIENT19")
     public String strIngredient19;
-    @Column(name = "INGREDIENT20")
+    @JsonProperty("INGREDIENT20")
     public String strIngredient20;
 }

@@ -25,4 +25,5 @@ public interface ExchangeRatesRepository extends CrudRepository<ExchangeRatesLat
 
     @Override
     ExchangeRatesLatest save(ExchangeRatesLatest exchangeRatesLatest);
+
 }

@@ -1,5 +1,6 @@
 package com.kodilla.restaurantbackend.domain;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Entity(name = "RATES")
 public class Rate {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "RATES_ID")
     private Long id;
     @Column(name = "PLN")
@@ -21,9 +22,9 @@ public class Rate {
     private Double usd;
     @Column(name = "GBP")
     private Double gbp;
-    //    @ManyToOne
-//    @JoinColumn(name = "EXCHANGE_RATES_LATESTS_ID")
-//    @NotNull
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "EXCHANGE_RATE_LATESTS_ID")
+
     @OneToOne(mappedBy = "rate", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ExchangeRatesLatest exchangeRatesLatest;
 

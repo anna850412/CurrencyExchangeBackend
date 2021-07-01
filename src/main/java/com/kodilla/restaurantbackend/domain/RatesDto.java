@@ -10,18 +10,11 @@ import lombok.*;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RatesDto {
-    @JsonProperty("id")
-    private String id;
-    @JsonProperty("PLN")
+    @JsonProperty("pln")
     private double pln;
-    @JsonProperty("USD")
+    @JsonProperty("usd")
     private double usd;
-    @JsonProperty("GBP")
+    @JsonProperty("gbp")
     private double gbp;
 
-    public RatesDto(double pln, double usd, double gbp) {
-        this.pln = pln;
-        this.usd = usd;
-        this.gbp = gbp;
-    }
 }

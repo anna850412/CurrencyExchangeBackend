@@ -4,6 +4,7 @@ import com.kodilla.restaurantbackend.domain.CreatedRateDto;
 import com.kodilla.restaurantbackend.domain.ExchangeRatesLatestDto;
 import com.kodilla.restaurantbackend.domain.RatesDto;
 import com.kodilla.restaurantbackend.fasade.ExchangeRateFasade;
+import com.kodilla.restaurantbackend.service.AmountCalculationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class ExchangeRatesControllerDto {
     @Autowired
     private final ExchangeRateFasade exchangeRateFasade;
+    @Autowired
+    private final AmountCalculationService amountCalculationService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/getLatestRates")
     public ExchangeRatesLatestDto getLatestExchangeRates() {
@@ -26,9 +29,21 @@ public class ExchangeRatesControllerDto {
                 + " " + "USD " + " " + latest.getRatesDto().getUsd());
         return latest;
     }
+
     @RequestMapping(method = RequestMethod.POST, value = "/createRate")
-    public CreatedRateDto createRate(@RequestParam RatesDto ratesDto){
+    public CreatedRateDto createRate(@RequestParam RatesDto ratesDto) {
         return exchangeRateFasade.createRate(ratesDto);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/calculateFromEURtoUSD")
+    public Double calculateFromEURtoUSD(@RequestParam Double amount) {
+        Double valueInUSD = amountCalculationService.calculateAmountFromEURToUSD(amount);
+        return valueInUSD;
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/calculateFromEURtoPLN")
+    public Double calculateFromEURtoPLN(@RequestParam Double amount) {
+        Double valueInPLN = amountCalculationService.calculateAmountFromEURToPLN(amount);
+        return valueInPLN;
     }
 }
 
