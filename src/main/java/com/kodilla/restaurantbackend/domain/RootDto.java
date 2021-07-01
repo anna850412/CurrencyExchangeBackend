@@ -10,5 +10,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RootDto {
     @JsonProperty("meals")
-    public List<MealDto> meals;
+    public List<MealExternalDto> meals;
 }

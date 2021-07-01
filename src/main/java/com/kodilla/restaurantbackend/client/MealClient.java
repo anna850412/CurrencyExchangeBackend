@@ -1,8 +1,8 @@
 package com.kodilla.restaurantbackend.client;
 
 import com.kodilla.restaurantbackend.config.MealConfig;
-import com.kodilla.restaurantbackend.domain.Meal;
-import com.kodilla.restaurantbackend.domain.MealDto;
+import com.kodilla.restaurantbackend.domain.CategoriesDto;
+import com.kodilla.restaurantbackend.domain.MealExternalDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +23,24 @@ public class MealClient {
     private final RestTemplate restTemplate;
     private static final Logger LOGGER = LoggerFactory.getLogger(MealClient.class);
 
-    public List<MealDto> getMealsList(){
+    public List<MealExternalDto> getMealsList(){
         URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
                 .queryParam("apiKey", mealConfig.getMealAppKey())
                 .queryParam("random", "/random.php")
                 .encode().build().toUri();
-        MealDto[] mealResponse = restTemplate.getForObject(url, MealDto[].class);
+        MealExternalDto[] mealResponse = restTemplate.getForObject(url, MealExternalDto[].class);
 //        return getMealsList();
         return Optional.ofNullable(mealResponse)
+                .map(Arrays::asList)
+                .orElse(Collections.emptyList());
+    }
+    public List<CategoriesDto> getCategories(){
+        URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
+                .queryParam("apiKey", mealConfig.getMealAppKey())
+                .queryParam("categories", "/categories.php")
+                .encode().build().toUri();
+        CategoriesDto[] categoriesResponse = restTemplate.getForObject(url, CategoriesDto[].class);
+        return Optional.ofNullable(categoriesResponse)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());
     }

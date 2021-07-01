@@ -1,5 +1,5 @@
 package com.kodilla.restaurantbackend.domain;
 
 public enum ProductType {
-    SOUP, DESSERT, DRINKS, FIRST_DISH, MAIN_COURSE
+    LAMB, DESSERT, STARTER, SIDE, VEGETARIAN, VEGAN, PASTA, MISCELLANEOUS, BREAKFAST, SEAFOOD, BEEF, PORK, CHICKEN, GOAT
 }

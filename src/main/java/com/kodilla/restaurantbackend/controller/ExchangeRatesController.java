@@ -34,8 +34,8 @@ public class ExchangeRatesController {
     }
 
     @GetMapping(value = "/findDate")
-    public ExchangeRatesLatest findByBaseDate(@RequestParam String date) {
-        return exchangeRatesService.getDate(date);
+    public ExchangeRatesLatestDto findByBaseDate(@RequestParam String date) {
+        return exchangeRatesMapper.mapToExchangeRatesLatestDto(exchangeRatesService.getDate(date));
     }
 
     @GetMapping(value = "/rates/{latestId}")
