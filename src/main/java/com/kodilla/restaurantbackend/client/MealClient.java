@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -23,21 +24,31 @@ public class MealClient {
     private final RestTemplate restTemplate;
     private static final Logger LOGGER = LoggerFactory.getLogger(MealClient.class);
 
-    public List<MealExternalDto> getMealsList(){
-        URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
-                .queryParam("apiKey", mealConfig.getMealAppKey())
-                .queryParam("random", "/random.php")
-                .encode().build().toUri();
-        MealExternalDto[] mealResponse = restTemplate.getForObject(url, MealExternalDto[].class);
-//        return getMealsList();
-        return Optional.ofNullable(mealResponse)
-                .map(Arrays::asList)
-                .orElse(Collections.emptyList());
+    public List<MealExternalDto> getMealsList() {
+        URI url = getUri();
+        try {
+            MealExternalDto mealResponse = restTemplate.getForObject(url, MealExternalDto.class);
+            return Optional.ofNullable(mealResponse)
+                    .map(Arrays::asList)
+                    .orElse(Collections.emptyList());
+        } catch (RestClientException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
     }
-    public List<CategoriesDto> getCategories(){
+
+    private URI getUri() {
         URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
                 .queryParam("apiKey", mealConfig.getMealAppKey())
-                .queryParam("categories", "/categories.php")
+                .queryParam("random", mealConfig.getMealRandom())
+                .encode().build().toUri();
+        return url;
+    }
+
+    public List<CategoriesDto> getCategories() {
+        URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
+                .queryParam("apiKey", mealConfig.getMealAppKey())
+                .queryParam("categories", mealConfig.getMealCategories())
                 .encode().build().toUri();
         CategoriesDto[] categoriesResponse = restTemplate.getForObject(url, CategoriesDto[].class);
         return Optional.ofNullable(categoriesResponse)

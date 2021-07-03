@@ -1,6 +1,7 @@
 package com.kodilla.restaurantbackend.service;
 
 import com.kodilla.restaurantbackend.client.MealClient;
+import com.kodilla.restaurantbackend.domain.CategoriesDto;
 import com.kodilla.restaurantbackend.domain.MealExternalDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,9 @@ public class MealService {
 
     public List<MealExternalDto> getAllMeals() {
         return mealClient.getMealsList();
+    }
+
+    public List<CategoriesDto> getAllCategories() {
+        return mealClient.getCategories();
     }
 }

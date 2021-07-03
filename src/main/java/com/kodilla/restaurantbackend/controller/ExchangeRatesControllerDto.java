@@ -31,7 +31,7 @@ public class ExchangeRatesControllerDto {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/createRate")
-    public CreatedRateDto createRate(@RequestParam RatesDto ratesDto) {
+    public CreatedRateDto createRate(@RequestBody RatesDto ratesDto) {
         return exchangeRateFasade.createRate(ratesDto);
     }
 

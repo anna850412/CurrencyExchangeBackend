@@ -18,7 +18,7 @@ public class MealController {
     private final MealFacade mealFacade;
     private final MealClient mealClient;
 
-    @GetMapping(value = "getMeals")
+    @GetMapping(value = "/getMeals")
     public  List<MealExternalDto> getMeals(){
         List<MealExternalDto> mealsList = mealClient.getMealsList();
         mealsList.forEach(mealExternalDto ->
@@ -26,12 +26,15 @@ public class MealController {
                         "name: " + mealExternalDto.getStrMeal()));
         return mealFacade.getAllMeals();
     }
-    @GetMapping(value = "getCategories")
-    public void getCategory() {
+    @GetMapping(value = "/getCategories")
+    public List<CategoriesDto> getCategory() {
         List<CategoriesDto> categoriesList = mealClient.getCategories();
         categoriesList.
                 forEach(categoriesDto ->
                         System.out.println("category: " + categoriesDto.getStrCategory() +
                                 "description: " + categoriesDto.getStrCategoryDescription()));
+        return mealFacade.getAllCategories();
     }
+
+
 }

@@ -11,5 +11,9 @@ public class MealConfig {
     private String mealEndPoint;
     @Value("${meal.app.key}")
     private String mealAppKey;
+    @Value("${meal.random}")
+    private String mealRandom;
+    @Value("${meal.categories}")
+    private String mealCategories;
 
 }

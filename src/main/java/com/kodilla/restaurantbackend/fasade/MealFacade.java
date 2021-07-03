@@ -1,5 +1,7 @@
 package com.kodilla.restaurantbackend.fasade;
 
+import com.kodilla.restaurantbackend.domain.CategoriesDto;
+import com.kodilla.restaurantbackend.domain.Category;
 import com.kodilla.restaurantbackend.domain.Meal;
 import com.kodilla.restaurantbackend.domain.MealExternalDto;
 import com.kodilla.restaurantbackend.mapper.MealMapper;
@@ -20,9 +22,14 @@ public class MealFacade {
     private MealValidator mealValidator;
 
     public List<MealExternalDto> getAllMeals() {
-        List<Meal> meals = mealMapper.mapFromMealExtrenalDtoToMeal(mealService.getAllMeals());
+        List<Meal> meals =  mealMapper.mapToMealList(mealService.getAllMeals());
         List<Meal> filteredMeals = mealValidator.validateMeal(meals);
-        return mealMapper.mapFromMealDtoToMeal(filteredMeals);
+        return mealMapper.mapToMealExtrenalDtoList(filteredMeals);
+    }
+    public List<CategoriesDto> getAllCategories(){
+        List<Category> categories = mealMapper.mapToCategories(mealService.getAllCategories());
+        List<Category> filteredCategories = mealValidator.validateCategory(categories);
+        return mealMapper.mapToCategoriesDtoList(filteredCategories);
     }
 
 }

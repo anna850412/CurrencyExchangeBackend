@@ -45,15 +45,18 @@ public class ExchangeRatesController {
     }
 
     @DeleteMapping(value = "/deleteRates/{latestId}")
-    public void deleteRates(@PathVariable Long latestId) {
+    public void deleteRates(@RequestParam Long latestId) {
         exchangeRatesService.deleteExchangeRatesById(latestId);
     }
 
     @PutMapping(value = "/rates")
     public ExchangeRatesLatestDto updateRates(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
-        return exchangeRatesMapper.mapToExchangeRatesLatestDto(
+        Rate rate = exchangeRatesMapper.mapToRates(exchangeRatesLatestDto.getRatesDto());
+        ratesService.saveRates(rate);
+        exchangeRatesMapper.mapToExchangeRatesLatestDto(
                 exchangeRatesService.saveLatestExchangeRate(
                         exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto)));
+        return exchangeRatesLatestDto;
     }
 /*
     @RequestMapping(method = RequestMethod.POST, value = "/createRates", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -69,12 +72,13 @@ public class ExchangeRatesController {
  return rate;
     }
     */
-    @RequestMapping(method = RequestMethod.POST, value = "/createRates", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createRate(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto){
+    @RequestMapping(method = RequestMethod.POST, value = "/createExchangeRates", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ExchangeRatesLatestDto createRate(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto){
         Rate rate = exchangeRatesMapper.mapToRates(exchangeRatesLatestDto.getRatesDto());
         ratesService.saveRates(rate);
         ExchangeRatesLatest exchangeRatesLatest = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto);
         exchangeRatesLatest.setRate(rate);
         exchangeRatesService.saveLatestExchangeRate(exchangeRatesLatest);
+        return exchangeRatesLatestDto;
     }
 }
