@@ -2,6 +2,8 @@ package com.kodilla.restaurantbackend.client;
 
 import com.kodilla.restaurantbackend.config.MealConfig;
 import com.kodilla.restaurantbackend.domain.CategoriesDto;
+import com.kodilla.restaurantbackend.domain.CreatedMealDto;
+import com.kodilla.restaurantbackend.domain.MealDto;
 import com.kodilla.restaurantbackend.domain.MealExternalDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -56,4 +58,11 @@ public class MealClient {
                 .orElse(Collections.emptyList());
     }
 
+    public CreatedMealDto createNewMeal(MealDto mealDto) {
+        URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
+                .queryParam("apiKey", mealConfig.getMealAppKey())
+                .queryParam("random", mealConfig.getMealRandom())
+                .build().encode().toUri();
+        return restTemplate.postForObject(url, null, CreatedMealDto.class);
+    }
 }

@@ -49,4 +49,13 @@ public List<Meal> mapToMealList (final List<MealExternalDto> mealExternalDtoList
             .map(category -> new CategoriesDto(category.getIdCategory(), category.getStrCategory(), category.getStrCategoryThumb(), category.getStrCategoryDescription()))
             .collect(Collectors.toList());
     }
+
+    public MealDto mapFromMealToMealDto(Meal meal) {
+    return new MealDto(
+            meal.getStrMeal(),
+            meal.getStrCategory(),
+            meal.getStrArea(),
+            meal.getStrInstructions(),
+            meal.getStrYoutube());
+    }
 }
