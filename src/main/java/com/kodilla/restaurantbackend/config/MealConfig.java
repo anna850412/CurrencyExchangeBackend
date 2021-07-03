@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 public class MealConfig {
     @Value("${meal.endpoint}")
     private String mealEndPoint;
-    @Value("${meal.app.key}")
-    private String mealAppKey;
     @Value("${meal.random}")
     private String mealRandom;
     @Value("${meal.categories}")

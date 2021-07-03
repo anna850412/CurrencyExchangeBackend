@@ -1,9 +1,12 @@
 package com.kodilla.restaurantbackend.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity(name = "MEALS")
 public class Meal {

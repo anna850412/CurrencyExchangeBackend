@@ -1,7 +1,6 @@
 package com.kodilla.restaurantbackend.repository;
 
 import com.kodilla.restaurantbackend.domain.ExchangeRatesLatest;
-import com.kodilla.restaurantbackend.domain.Rate;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

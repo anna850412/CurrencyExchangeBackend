@@ -1,11 +1,17 @@
 package com.kodilla.restaurantbackend.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
+@Component
 public class PriceCalculator {
-    @Autowired
+
     private MealExternalDto mealExternalDto;
     public Double calculatePrice(Double price){
         if(mealExternalDto.getStrCategory().equals("Dessert")){

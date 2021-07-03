@@ -45,5 +45,20 @@ public class ExchangeRatesControllerDto {
         Double valueInPLN = amountCalculationService.calculateAmountFromEURToPLN(amount);
         return valueInPLN;
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/calculateFromUSDtoEUR")
+    public Double calculateFromUSDtoEUR(@RequestParam Double amount) {
+        Double valueInUSD = amountCalculationService.calculateAmountFromUSDToEUR(amount);
+        return valueInUSD;
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/calculateFromPLNtoEUR")
+    public Double calculateFromPLNtoEUR(@RequestParam Double amount) {
+        Double valueInPLN = amountCalculationService.calculateAmountFromPLNToEUR(amount);
+        return valueInPLN;
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/calculateFromEURtoGBP")
+    public Double calculateFromEURtoGBP(@RequestParam Double amount) {
+        Double valueInEUR = amountCalculationService.calculateAmountFromEURToGBP(amount);
+        return valueInEUR;
+    }
 }
 

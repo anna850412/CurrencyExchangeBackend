@@ -58,4 +58,12 @@ public List<Meal> mapToMealList (final List<MealExternalDto> mealExternalDtoList
             meal.getStrInstructions(),
             meal.getStrYoutube());
     }
+
+    public List<MealDto> mapToMealDtoList(List<Meal> mealList) {
+    return mealList.stream()
+            .map(meal -> new MealDto(meal.getStrMeal(), meal.getStrArea(), meal.getStrCategory(), meal.getStrYoutube(), meal.getStrInstructions()))
+            .collect(Collectors.toList());
+
+
+    }
 }

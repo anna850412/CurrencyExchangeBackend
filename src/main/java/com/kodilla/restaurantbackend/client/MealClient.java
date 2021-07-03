@@ -5,6 +5,7 @@ import com.kodilla.restaurantbackend.domain.CategoriesDto;
 import com.kodilla.restaurantbackend.domain.CreatedMealDto;
 import com.kodilla.restaurantbackend.domain.MealDto;
 import com.kodilla.restaurantbackend.domain.MealExternalDto;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
+@Getter
 @Component
 @RequiredArgsConstructor
 public class MealClient {
@@ -29,7 +30,7 @@ public class MealClient {
     public List<MealExternalDto> getMealsList() {
         URI url = getUri();
         try {
-            MealExternalDto mealResponse = restTemplate.getForObject(url, MealExternalDto.class);
+            MealExternalDto[] mealResponse = restTemplate.getForObject(url, MealExternalDto[].class);
             return Optional.ofNullable(mealResponse)
                     .map(Arrays::asList)
                     .orElse(Collections.emptyList());
@@ -40,16 +41,13 @@ public class MealClient {
     }
 
     private URI getUri() {
-        URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
-                .queryParam("apiKey", mealConfig.getMealAppKey())
-                .queryParam("random", mealConfig.getMealRandom())
+        URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint() + mealConfig.getMealRandom())
                 .encode().build().toUri();
         return url;
     }
 
     public List<CategoriesDto> getCategories() {
         URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
-                .queryParam("apiKey", mealConfig.getMealAppKey())
                 .queryParam("categories", mealConfig.getMealCategories())
                 .encode().build().toUri();
         CategoriesDto[] categoriesResponse = restTemplate.getForObject(url, CategoriesDto[].class);
@@ -60,7 +58,6 @@ public class MealClient {
 
     public CreatedMealDto createNewMeal(MealDto mealDto) {
         URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
-                .queryParam("apiKey", mealConfig.getMealAppKey())
                 .queryParam("random", mealConfig.getMealRandom())
                 .build().encode().toUri();
         return restTemplate.postForObject(url, null, CreatedMealDto.class);
