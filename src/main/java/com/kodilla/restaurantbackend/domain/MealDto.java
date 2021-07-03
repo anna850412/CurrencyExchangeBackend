@@ -10,27 +10,27 @@ import lombok.*;
 @Setter
 public class MealDto {
     private Long id;
-    private String mealName;
-    private String mealCategory;
-    private String mealArea;
-    private String mealInstructions;
-    private String mealYoutube;
-    private double mealPrice;
+    private String strMeal;
+    private String strCategory;
+    private String strArea;
+    private String strInstructions;
+    private String strYoutube;
+    private double strPrice;
 
-    public MealDto(String mealName, String mealCategory, String mealArea, String mealInstructions, String mealYoutube) {
-        this.mealName = mealName;
-        this.mealCategory = mealCategory;
-        this.mealArea = mealArea;
-        this.mealInstructions = mealInstructions;
-        this.mealYoutube = mealYoutube;
+    public MealDto(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube) {
+        this.strMeal = strMeal;
+        this.strCategory = strCategory;
+        this.strArea = strArea;
+        this.strInstructions = strInstructions;
+        this.strYoutube = strYoutube;
     }
 
-    public MealDto(String mealName, String mealCategory, String mealArea, String mealInstructions, String mealYoutube, double mealPrice) {
-        this.mealName = mealName;
-        this.mealCategory = mealCategory;
-        this.mealArea = mealArea;
-        this.mealInstructions = mealInstructions;
-        this.mealYoutube = mealYoutube;
-        this.mealPrice = mealPrice;
+    public MealDto(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube, double strPrice) {
+        this.strMeal = strMeal;
+        this.strCategory = strCategory;
+        this.strArea = strArea;
+        this.strInstructions = strInstructions;
+        this.strYoutube = strYoutube;
+        this.strPrice = strPrice;
     }
 }

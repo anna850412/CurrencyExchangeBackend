@@ -30,7 +30,7 @@ public class Meal {
     @JoinColumn(name = "ROOTS_ID")
     private Root root;
 
-    public Meal(String mealName, String mealCategory, String mealArea, String mealInstructions, String mealYoutube, double mealPrice) {
+    public Meal(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube, double price) {
     }
 
     public Meal(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube) {

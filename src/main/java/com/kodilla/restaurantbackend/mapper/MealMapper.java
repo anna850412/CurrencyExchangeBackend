@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 public class MealMapper {
 public Meal mapFromMealDtoToMeal(final MealDto mealDto){
 return new Meal(
-        mealDto.getMealName(),
-        mealDto.getMealCategory(),
-        mealDto.getMealArea(),
-        mealDto.getMealInstructions(),
-        mealDto.getMealYoutube(),
-        mealDto.getMealPrice()
+        mealDto.getStrMeal(),
+        mealDto.getStrCategory(),
+        mealDto.getStrArea(),
+        mealDto.getStrInstructions(),
+        mealDto.getStrYoutube(),
+        mealDto.getStrPrice()
 );
 }
 public Meal mapFromMealExtrenalDtoToMeal(final MealExternalDto mealExternalDto){

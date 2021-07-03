@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface RatesRepository extends CrudRepository<Rate, Long> {
     @Override
     Rate save(Rate rate);
+
 }
