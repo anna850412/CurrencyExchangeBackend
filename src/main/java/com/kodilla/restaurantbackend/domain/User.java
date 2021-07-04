@@ -24,6 +24,9 @@ public class User {
     @NotNull
     @Column(name = "LOGIN", unique = true)
     private String login;
+    @NotNull
+    @Column(name = "EMAIL", unique = true)
+    private String eMail;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name ="CART_ID")
     private Cart cart;

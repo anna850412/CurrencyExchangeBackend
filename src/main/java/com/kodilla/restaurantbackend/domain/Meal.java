@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -12,7 +15,7 @@ import javax.persistence.*;
 public class Meal {
     @Id
     @GeneratedValue
-    @Column(name = "MEALS_ID")
+    @Column(name = "MEAL_ID")
     private Long id;
     @Column(name = "NAME")
     private String strMeal;
@@ -29,6 +32,14 @@ public class Meal {
     @ManyToOne
     @JoinColumn(name = "ROOTS_ID")
     private Root root;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "JOIN_MEAL_ORDER",
+            joinColumns = {@JoinColumn(name = "MEAL_ID", referencedColumnName = "MEAL_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")}
+
+    )
+    private List<Order> orderList = new ArrayList<>();
 
     public Meal(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube, double price) {
     }

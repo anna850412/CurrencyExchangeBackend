@@ -6,7 +6,7 @@ import com.kodilla.restaurantbackend.exceptions.MealNotExistException;
 import com.kodilla.restaurantbackend.fasade.MealFacade;
 import com.kodilla.restaurantbackend.mapper.MealMapper;
 import com.kodilla.restaurantbackend.service.MealService;
-import com.kodilla.restaurantbackend.service.OneHundredDishesService;
+import com.kodilla.restaurantbackend.service.TenDishesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +21,11 @@ public class MealController {
     private final MealFacade mealFacade;
     private final MealClient mealClient;
     private final MealMapper mealMapper;
-    private final OneHundredDishesService oneHundredDishesService;
+    private final TenDishesService tenDishesService;
 
     @GetMapping(value = "/get10Meal")
     public List<Meal> get10Meals() {
-        return oneHundredDishesService.get10Recipients();
+        return tenDishesService.get10Recipients();
     }
 
     @GetMapping(value = "/getAllMeals")

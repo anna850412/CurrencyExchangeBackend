@@ -36,7 +36,6 @@ public class ExchangeRatesMapper {
                 exchangeRatesLatest.getTimestamp(),
                 exchangeRatesLatest.getBase(),
                 exchangeRatesLatest.getDate(),
-//                mapToRatesDto((Rate) exchangeRatesLatest.getRateList())
                 mapToRatesDto(exchangeRatesLatest.getRate())
         );
     }

@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 @Data
-public class OneHundredDishesService {
+public class TenDishesService {
     @Autowired
     private final MealClient mealClient;
     @Autowired
@@ -28,7 +28,8 @@ public class OneHundredDishesService {
         List<Meal> tenMeals = new ArrayList<>();
         for (int i = 0; i <= 10; i++) {
             MealsDto randomMeals = mealClient.getRandomMeal();
-            MealExternalDto mealExtDto = randomMeals.meals[0];
+//            MealExternalDto mealExtDto = randomMeals.meals[0];
+            MealExternalDto mealExtDto = randomMeals.meals.get(0);
             Meal meal = mealMapper.mapFromMealExtrenalDtoToMeal(mealExtDto);
             mealRepository.save(meal);
             tenMeals.add(meal);

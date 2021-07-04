@@ -20,13 +20,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class ExchangeRatesController {
-//    @Autowired
+    //    @Autowired
 //    private final ExchangeRateFasade exchangeRateFasade;
     private final ExchangeRatesService exchangeRatesService;
     private final ExchangeRatesMapper exchangeRatesMapper;
     private final RatesService ratesService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/rates")
+    @RequestMapping(method = RequestMethod.GET, value = "/allRates")
     public List<ExchangeRatesLatestDto> getLatest() {
         return exchangeRatesMapper.mapToExchangeRatesLatestDtoList(exchangeRatesService.getAllRates());
 //    return exchangeRatesMapper.mapToExchangeRatesLatestList(exchangeRateFasade.fetchExchangeRatesLatest());
@@ -38,12 +38,12 @@ public class ExchangeRatesController {
     }
 
     @GetMapping(value = "/findDate")
-    public ExchangeRatesLatestDto findByBaseDate(@RequestParam String date) {
-        return exchangeRatesMapper.mapToExchangeRatesLatestDto(exchangeRatesService.getDate(date));
+    public ExchangeRatesLatest findByBaseDate(@RequestParam String date) {
+        return exchangeRatesService.getDate(date);
     }
 
     @GetMapping(value = "/rates/{latestId}")
-    public ExchangeRatesLatestDto getRatesId(@PathVariable Long latestId) throws RatesNotFoundException {
+    public ExchangeRatesLatestDto getRatesId(@RequestParam Long latestId) throws RatesNotFoundException {
         return exchangeRatesMapper.mapToExchangeRatesLatestDto(
                 exchangeRatesService.findLatestRateById(latestId).orElseThrow(RatesNotFoundException::new));
     }
@@ -63,22 +63,23 @@ public class ExchangeRatesController {
         exchangeRatesService.saveLatestExchangeRate(exchangeRatesLatest);
         return exchangeRatesLatest;
     }
-/*
-    @RequestMapping(method = RequestMethod.POST, value = "/createRates", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Rate createRate(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
-        Rate rate = exchangeRatesMapper.mapToRates(exchangeRatesLatestDto.getRatesDto());
-        ratesService.saveRates(rate);
 
-        ExchangeRatesLatest exchangeRatesLatest = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto);
-        exchangeRatesService.saveLatestExchangeRate(exchangeRatesLatest);
-//        exchangeRatesLatest.setRateList((List<Rate>) exchangeRatesMapper.mapToRatesDto(rate));
-        exchangeRatesLatest.setRate(rate);
+    /*
+        @RequestMapping(method = RequestMethod.POST, value = "/createRates", consumes = MediaType.APPLICATION_JSON_VALUE)
+        public Rate createRate(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
+            Rate rate = exchangeRatesMapper.mapToRates(exchangeRatesLatestDto.getRatesDto());
+            ratesService.saveRates(rate);
 
- return rate;
-    }
-    */
+            ExchangeRatesLatest exchangeRatesLatest = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto);
+            exchangeRatesService.saveLatestExchangeRate(exchangeRatesLatest);
+    //        exchangeRatesLatest.setRateList((List<Rate>) exchangeRatesMapper.mapToRatesDto(rate));
+            exchangeRatesLatest.setRate(rate);
+
+     return rate;
+        }
+        */
     @RequestMapping(method = RequestMethod.POST, value = "/createExchangeRates", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ExchangeRatesLatestDto createRate(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto){
+    public ExchangeRatesLatestDto createRate(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
         Rate rate = exchangeRatesMapper.mapToRates(exchangeRatesLatestDto.getRatesDto());
         ratesService.saveRates(rate);
         ExchangeRatesLatest exchangeRatesLatest = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto);

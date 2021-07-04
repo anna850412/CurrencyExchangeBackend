@@ -30,13 +30,14 @@ public class Order {
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "orderList")
 
-    private List<Product> productList = new ArrayList<>();
-//    private List<Meal> mealList = new ArrayList<>();
+//    private List<Product> productList = new ArrayList<>();
+    private List<Meal> mealList = new ArrayList<>();
 
     public Order(User user, LocalDateTime orderDate, List<Product> productList) {
         this.user = user;
         this.orderDate = orderDate;
-        this.productList = productList;
+//      this.productList = productList;
+        this.mealList = mealList;
     }
 
     public Order(User user, LocalDateTime orderDate) {

@@ -22,11 +22,21 @@ public class SimpleEmailService {
         log.info("Starting email preparation...");
 
         try {
-            javaMailSender.send(createMimeMessage(mail));
+            SimpleMailMessage mailMessage = createMailMessage(mail);
+//            javaMailSender.send(createMimeMessage(mail));
+            javaMailSender.send(mailMessage);
             log.info("Email has been sent.");
         } catch (MailException e) {
             log.error("Failed to process email sending: " + e.getMessage(), e);
         }
+    }
+
+    private SimpleMailMessage createMailMessage(Mail mail) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(mail.getMailTo());
+        mailMessage.setSubject(mail.getSubject());
+        mailMessage.setText(mail.getMessage());
+        return mailMessage;
     }
 
     private MimeMessagePreparator createMimeMessage(final Mail mail) {
