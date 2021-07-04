@@ -1,10 +1,7 @@
 package com.kodilla.restaurantbackend.client;
 
 import com.kodilla.restaurantbackend.config.MealConfig;
-import com.kodilla.restaurantbackend.domain.CategoriesDto;
-import com.kodilla.restaurantbackend.domain.CreatedMealDto;
-import com.kodilla.restaurantbackend.domain.MealDto;
-import com.kodilla.restaurantbackend.domain.MealExternalDto;
+import com.kodilla.restaurantbackend.domain.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -19,6 +16,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
 @Getter
 @Component
 @RequiredArgsConstructor
@@ -27,16 +25,24 @@ public class MealClient {
     private final RestTemplate restTemplate;
     private static final Logger LOGGER = LoggerFactory.getLogger(MealClient.class);
 
-    public List<MealExternalDto> getMealsList() {
+    public MealsDto getRandomMeal() {
         URI url = getUri();
         try {
-            MealExternalDto[] mealResponse = restTemplate.getForObject(url, MealExternalDto[].class);
-            return Optional.ofNullable(mealResponse)
-                    .map(Arrays::asList)
-                    .orElse(Collections.emptyList());
+            MealsDto mealsResponse = restTemplate.getForObject(url, MealsDto.class);
+//            return Optional.ofNullable(mealsResponse)
+//                    .map(Arrays::asList)
+//                    .orElse(Collections.emptyList());
+//        } catch (RestClientException e) {
+//            LOGGER.error(e.getMessage(), e);
+//            return Collections.emptyList();
+//        }
+            if (mealsResponse != null) {
+                return mealsResponse;
+            }
+            return Optional.ofNullable(mealsResponse).get();
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
+            return getRandomMeal();
         }
     }
 

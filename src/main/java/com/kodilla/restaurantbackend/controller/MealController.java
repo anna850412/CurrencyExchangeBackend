@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 
 @RestController
@@ -24,22 +23,28 @@ public class MealController {
     private final MealMapper mealMapper;
     private final OneHundredDishesService oneHundredDishesService;
 
-    @GetMapping(value = "/get100")
-    public List<MealExternalDto> get100Meals(){
-        return oneHundredDishesService.get100Recipients();
+    @GetMapping(value = "/get10Meal")
+    public List<Meal> get10Meals() {
+        return oneHundredDishesService.get10Recipients();
     }
+
     @GetMapping(value = "/getAllMeals")
-    public List<MealDto> getAllMeals(){
-    return mealMapper.mapToMealDtoList(mealService.findAllMeals());
+    public List<MealDto> getAllMeals() {
+
+        return mealMapper.mapToMealDtoList(mealService.findAllMeals());
     }
-    @GetMapping(value = "/getMeals")
-    public  List<MealExternalDto> getMeals(){
-        List<MealExternalDto> mealsList = mealClient.getMealsList();
-        mealsList.forEach(mealExternalDto ->
-                System.out.println("category: " + mealExternalDto.getStrCategory() +
-                        "name: " + mealExternalDto.getStrMeal()));
-        return mealFacade.getAllMeals();
+
+    @GetMapping(value = "/findAllClientsMeals")
+    public List<MealExternalDto> findAllClientsMeals() {
+        return mealService.findAllClientsMeals();
     }
+
+    @GetMapping(value = "/getRandomMeal")
+    public MealsDto getRandomMeal() {
+        MealsDto mealExternalDto = mealClient.getRandomMeal();
+        return mealExternalDto;
+    }
+
     @GetMapping(value = "/getCategories")
     public List<CategoriesDto> getCategory() {
         List<CategoriesDto> categoriesList = mealClient.getCategories();
@@ -49,9 +54,10 @@ public class MealController {
                                 "description: " + categoriesDto.getStrCategoryDescription()));
         return mealFacade.getAllCategories();
     }
+
     @PostMapping(value = "/createMeal", consumes = MediaType.APPLICATION_JSON_VALUE)
     public CreatedMealDto createMeal(@RequestBody MealDto mealDto) throws MealNotExistException {
-               return mealFacade.createMeal(mealDto);
+        return mealFacade.createMeal(mealDto);
 
     }
 

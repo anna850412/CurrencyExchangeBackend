@@ -4,10 +4,12 @@ import com.kodilla.restaurantbackend.domain.ExchangeRatesLatest;
 import com.kodilla.restaurantbackend.domain.ExchangeRatesLatestDto;
 import com.kodilla.restaurantbackend.domain.Rate;
 import com.kodilla.restaurantbackend.exceptions.RatesNotFoundException;
+import com.kodilla.restaurantbackend.fasade.ExchangeRateFasade;
 import com.kodilla.restaurantbackend.mapper.ExchangeRatesMapper;
 import com.kodilla.restaurantbackend.service.ExchangeRatesService;
 import com.kodilla.restaurantbackend.service.RatesService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class ExchangeRatesController {
+//    @Autowired
+//    private final ExchangeRateFasade exchangeRateFasade;
     private final ExchangeRatesService exchangeRatesService;
     private final ExchangeRatesMapper exchangeRatesMapper;
     private final RatesService ratesService;
@@ -25,6 +29,7 @@ public class ExchangeRatesController {
     @RequestMapping(method = RequestMethod.GET, value = "/rates")
     public List<ExchangeRatesLatestDto> getLatest() {
         return exchangeRatesMapper.mapToExchangeRatesLatestDtoList(exchangeRatesService.getAllRates());
+//    return exchangeRatesMapper.mapToExchangeRatesLatestList(exchangeRateFasade.fetchExchangeRatesLatest());
     }
 
     @GetMapping(value = "/findBaseRate")
@@ -49,13 +54,14 @@ public class ExchangeRatesController {
     }
 
     @PutMapping(value = "/rates")
-    public ExchangeRatesLatestDto updateRates(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
-        Rate rate = exchangeRatesMapper.mapToRates(exchangeRatesLatestDto.getRatesDto());
+    public ExchangeRatesLatest updateRates(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
+
+
+        ExchangeRatesLatest exchangeRatesLatest = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto);
+        Rate rate = exchangeRatesLatest.getRate();
         ratesService.saveRates(rate);
-        exchangeRatesMapper.mapToExchangeRatesLatestDto(
-                exchangeRatesService.saveLatestExchangeRate(
-                        exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto)));
-        return exchangeRatesLatestDto;
+        exchangeRatesService.saveLatestExchangeRate(exchangeRatesLatest);
+        return exchangeRatesLatest;
     }
 /*
     @RequestMapping(method = RequestMethod.POST, value = "/createRates", consumes = MediaType.APPLICATION_JSON_VALUE)

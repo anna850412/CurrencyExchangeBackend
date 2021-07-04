@@ -14,10 +14,11 @@ public class PriceCalculationService {
     private long amount;
 
     public long calculateMealPrice(long price) {
-        return mealClient.getMealsList().stream()
-                .flatMap(meal -> mealClient.getMealsList().stream())
-                .filter(mealExternalDto -> mealExternalDto.getStrCategory().equals("Dessert"))
-                .count();
+//        return mealClient.getMealsList().stream()
+//                .flatMap(meal -> mealClient.getMealsList().stream())
+//                .filter(mealExternalDto -> mealExternalDto.getStrCategory().equals("Dessert"))
+//                .count();
+        return price;
     }
 }
 

@@ -17,8 +17,13 @@ public class MealService {
     public List<Meal> findAllMeals(){
         return mealRepository.findAll();
     }
+    public List<MealExternalDto> findAllClientsMeals(){
+        return null;
+//                mealClient.;
+    }
     public List<MealExternalDto> getAllMeals() {
-        return mealClient.getMealsList();
+        return null;
+//                mealClient.getMealsList();
     }
 
     public List<CategoriesDto> getAllCategories() {

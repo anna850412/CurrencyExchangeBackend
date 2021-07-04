@@ -14,8 +14,7 @@ return new Meal(
         mealDto.getStrCategory(),
         mealDto.getStrArea(),
         mealDto.getStrInstructions(),
-        mealDto.getStrYoutube(),
-        mealDto.getStrPrice()
+        mealDto.getStrYoutube()
 );
 }
 public Meal mapFromMealExtrenalDtoToMeal(final MealExternalDto mealExternalDto){

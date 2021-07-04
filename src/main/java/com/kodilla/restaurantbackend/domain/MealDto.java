@@ -10,12 +10,21 @@ import lombok.*;
 @Setter
 public class MealDto {
     private Long id;
+    private Long clientIdMeal;
     private String strMeal;
     private String strCategory;
     private String strArea;
     private String strInstructions;
     private String strYoutube;
-    private double strPrice;
+
+    public MealDto(Long clientIdMeal, String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube) {
+        this.clientIdMeal = clientIdMeal;
+        this.strMeal = strMeal;
+        this.strCategory = strCategory;
+        this.strArea = strArea;
+        this.strInstructions = strInstructions;
+        this.strYoutube = strYoutube;
+    }
 
     public MealDto(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube) {
         this.strMeal = strMeal;
@@ -25,12 +34,4 @@ public class MealDto {
         this.strYoutube = strYoutube;
     }
 
-    public MealDto(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube, double strPrice) {
-        this.strMeal = strMeal;
-        this.strCategory = strCategory;
-        this.strArea = strArea;
-        this.strInstructions = strInstructions;
-        this.strYoutube = strYoutube;
-        this.strPrice = strPrice;
-    }
 }
