@@ -17,7 +17,7 @@ return new Meal(
         mealDto.getStrYoutube()
 );
 }
-public Meal mapFromMealExtrenalDtoToMeal(final MealExternalDto mealExternalDto){
+public Meal mapFromMealExternalDtoToMeal(final MealExternalDto mealExternalDto){
     return new Meal(
             mealExternalDto.getStrMeal(),
             mealExternalDto.getStrCategory(),
