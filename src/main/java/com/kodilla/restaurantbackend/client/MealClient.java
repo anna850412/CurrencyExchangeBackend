@@ -28,7 +28,9 @@ public class MealClient {
     public MealsDto getRandomMeal() {
         URI url = getUri();
         try {
+
             MealsDto mealsResponse = restTemplate.getForObject(url, MealsDto.class);
+            System.out.println();
 //            return Optional.ofNullable(mealsResponse)
 //                    .map(Arrays::asList)
 //                    .orElse(Collections.emptyList());
@@ -37,7 +39,7 @@ public class MealClient {
 //            return Collections.emptyList();
 //        }
             if (mealsResponse != null) {
-                return mealsResponse;
+                return  mealsResponse;
             }
             return Optional.ofNullable(mealsResponse).get();
         } catch (RestClientException e) {

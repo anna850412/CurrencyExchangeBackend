@@ -23,7 +23,7 @@ public class MealController {
     private final MealMapper mealMapper;
     private final TenDishesService tenDishesService;
 
-    @GetMapping(value = "/get10Meal")
+    @GetMapping(value = "/get10Meals")
     public List<Meal> get10Meals() {
         return tenDishesService.get10Recipients();
     }

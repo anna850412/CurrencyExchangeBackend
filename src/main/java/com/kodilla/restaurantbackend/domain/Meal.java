@@ -40,6 +40,13 @@ public class Meal {
 
     )
     private List<Order> orderList = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "JOIN_CART_MEAL",
+            joinColumns = {@JoinColumn(name = "MEAL_ID", referencedColumnName = "MEAL_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")}
+    )
+    private List<Cart> cartList = new ArrayList<>();
 
     public Meal(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube, double price) {
     }

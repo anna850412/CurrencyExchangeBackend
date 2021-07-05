@@ -33,7 +33,7 @@ public class Order {
 //    private List<Product> productList = new ArrayList<>();
     private List<Meal> mealList = new ArrayList<>();
 
-    public Order(User user, LocalDateTime orderDate, List<Product> productList) {
+    public Order(User user, LocalDateTime orderDate, List<Meal> mealList) {
         this.user = user;
         this.orderDate = orderDate;
 //      this.productList = productList;

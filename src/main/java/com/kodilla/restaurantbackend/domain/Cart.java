@@ -25,8 +25,8 @@ public class Cart {
     @OneToOne(mappedBy = "cart", fetch = FetchType.LAZY)
     private User user;
     @ManyToMany(mappedBy = "cartList", fetch = FetchType.LAZY)
-    private List<Product> listOfProducts = new ArrayList<>();
-
+//    private List<Product> listOfProducts = new ArrayList<>();
+    private List<Meal> mealList = new ArrayList<>();
     public Cart(User user) {
         this.user = user;
     }
