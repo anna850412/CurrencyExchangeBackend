@@ -4,6 +4,7 @@ import com.kodilla.restaurantbackend.domain.ExchangeRatesLatest;
 import com.kodilla.restaurantbackend.domain.Meal;
 import com.kodilla.restaurantbackend.domain.Rate;
 import com.kodilla.restaurantbackend.domain.Root;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,10 +42,11 @@ public class RepositoryTestSuite {
         ratesRepository.deleteById(id1);
         ratesRepository.deleteById(id2);
     }
+
     @Test
-    void testMealRepositoryFindAll(){
+    void testMealRepositoryFindAll() {
         //Given
-        Meal meal = new Meal("name","category", "area","instruction","youTube",10.0);
+        Meal meal = new Meal("name", "category", "area", "instruction", "youTube");
         //When
         mealRepository.save(meal);
         //Then
@@ -57,10 +59,11 @@ public class RepositoryTestSuite {
         //Clean up
         mealRepository.deleteById(id);
     }
+
     @Test
-    void testMealRepositoryFindById(){
+    void testMealRepositoryFindById() {
         //Given
-        Meal meal = new Meal("name","category", "area","instruction","youTube",10.0);
+        Meal meal = new Meal("name", "category", "area", "instruction", "youTube");
         //When
         mealRepository.save(meal);
         //Then
@@ -70,10 +73,11 @@ public class RepositoryTestSuite {
         //Clean up
         mealRepository.deleteById(id);
     }
+
     @Test
-    void testMealRepositorySaveMeal(){
+    void testMealRepositorySaveMeal() {
         //Given
-        Meal meal = new Meal("name","category", "area","instructions","youTube",2.0);
+        Meal meal = new Meal("name", "category", "area", "instructions", "youTube");
         //When
         mealRepository.save(meal);
         Long id = meal.getId();
@@ -83,23 +87,25 @@ public class RepositoryTestSuite {
         //Clean up
         mealRepository.deleteById(id);
     }
+
     @Test
-    void testMealRepositoryDeleteById(){
+    void testMealRepositoryDeleteById() {
         //Given
-        Root root = new Root();
-        Meal meal = new Meal(1L,"name","category", "area","instructions","youTube",2.0, root);
+        mealRepository.deleteAll();
+//        Root root = new Root();
+        Meal meal = new Meal("name", "category", "area", "instructions", "youTube");
         //When
-        meal.setRoot(root);
+//        meal.setRoot(root);
         mealRepository.save(meal);
         Long id = meal.getId();
         mealRepository.deleteById(id);
         //Then
         Assertions.assertEquals("name", meal.getStrMeal());
-        //Clean up
-        mealRepository.deleteById(id);
+
     }
+
     @Test
-    void testExchangeRatesRepositorySaveExchangeRatesLatest(){
+    void testExchangeRatesRepositorySaveExchangeRatesLatest() {
         //Given
         Rate rate = new Rate(4.5, 1.8, 1.0);
         ExchangeRatesLatest exchangeRatesLatest = new ExchangeRatesLatest(true, 123, "eur", "2021-07-03", rate);
@@ -112,5 +118,12 @@ public class RepositoryTestSuite {
         //Clean up
         exchangeRatesRepository.deleteById(id);
 
+    }
+
+    @AfterEach
+    void cleanUp(){
+        ratesRepository.deleteAll();
+        exchangeRatesRepository.deleteAll();
+        mealRepository.deleteAll();
     }
 }

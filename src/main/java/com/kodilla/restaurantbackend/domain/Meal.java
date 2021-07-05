@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity(name = "MEALS")
+@Entity(name = "MEAL")
 public class Meal {
     @Id
     @GeneratedValue
@@ -23,7 +23,7 @@ public class Meal {
     private String strCategory;
     @Column(name = "AREA")
     private String strArea;
-    @Column(name = "INSTRUCTION")
+    @Column(name = "INSTRUCTION",  length = 2000, columnDefinition="TEXT")
     private String strInstructions;
     @Column(name = "YOU_TUBE_PAGE")
     private String strYoutube;
@@ -48,9 +48,11 @@ public class Meal {
     )
     private List<Cart> cartList = new ArrayList<>();
 
-    public Meal(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube, double price) {
-    }
-
-    public Meal(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube) {
+       public Meal(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube) {
+           this.strMeal = strMeal;
+           this.strCategory = strCategory;
+           this.strArea = strArea;
+           this.strInstructions = strInstructions;
+           this.strYoutube = strYoutube;
     }
 }

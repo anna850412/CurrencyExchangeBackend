@@ -35,7 +35,7 @@ public class MealController {
     }
 
     @GetMapping(value = "/findAllClientsMeals")
-    public List<MealExternalDto> findAllClientsMeals() {
+    public List<Meal> findAllClientsMeals() {
         return mealService.findAllClientsMeals();
     }
 

@@ -65,8 +65,7 @@ public class MealClient {
     }
 
     public CreatedMealDto createNewMeal(MealDto mealDto) {
-        URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
-                .queryParam("random", mealConfig.getMealRandom())
+        URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint() + mealConfig.getMealRandom())
                 .build().encode().toUri();
         return restTemplate.postForObject(url, null, CreatedMealDto.class);
     }

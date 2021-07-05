@@ -19,7 +19,7 @@ public class MealFacade {
     private MealValidator mealValidator;
 
     public List<MealExternalDto> getAllMeals() {
-        List<Meal> meals =  mealMapper.mapToMealList(mealService.getAllMeals());
+        List<Meal> meals =  mealService.findAllMeals();
         List<Meal> filteredMeals = mealValidator.validateMealList(meals);
         return mealMapper.mapToMealExtrenalDtoList(filteredMeals);
     }

@@ -60,5 +60,10 @@ public class ExchangeRatesControllerDto {
         Double valueInEUR = amountCalculationService.calculateAmountFromEURToGBP(amount);
         return valueInEUR;
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/calculateFromGBPtoEUR")
+    public Double calculateFromGBPtoEUR(@RequestParam Double amount) {
+        Double valueInGBP = amountCalculationService.calculateAmountFromGBPToEUR(amount);
+        return valueInGBP;
+    }
 }
 

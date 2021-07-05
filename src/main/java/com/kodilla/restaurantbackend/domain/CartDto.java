@@ -9,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CartDto {
     private Long cartId;
-    private List<ProductDto> listOfProducts;
+//    private List<ProductDto> listOfProducts;
+    private List<MealDto> listOfMeals;
 
 }
