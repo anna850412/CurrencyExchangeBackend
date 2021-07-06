@@ -25,8 +25,8 @@ public class MealController {
     private final TenDishesService tenDishesService;
 
     @GetMapping(value = "/get10Meals")
-    public List<Meal> get10Meals() {
-        return tenDishesService.get10Recipients();
+    public List<MealDto> get10Meals() {
+        return mealMapper.mapToMealDtoList(tenDishesService.get10Recipients());
     }
 
     @GetMapping(value = "/get10Categories")

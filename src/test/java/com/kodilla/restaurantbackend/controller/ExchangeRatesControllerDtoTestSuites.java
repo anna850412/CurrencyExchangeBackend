@@ -26,19 +26,19 @@ public class ExchangeRatesControllerDtoTestSuites {
     private ExchangeRateFasade exchangeRateFasade;
     @MockBean
     private ExchangeRatesControllerDto exchangeRatesControllerDto;
-//    @Test
-//    void shouldFetchExchangeRatesLatest() throws Exception{
-//        //Given
-//        RatesDto ratesDto = new RatesDto(4.5, 3.2, 1.4);
-//        ExchangeRatesLatestDto exchangeRatesLatestDto = new ExchangeRatesLatestDto(true, 123, "eur", "2021-07-03", ratesDto);
-//        when(exchangeRateFasade.fetchExchangeRatesLatest()).thenReturn(exchangeRatesLatestDto);
-//        //When&Then
-//        mockMvc.perform(MockMvcRequestBuilders
-//                .get("/v1/exchangeRates/getLatestRates")
-//                .contentType(MediaType.APPLICATION_JSON))
+    @Test
+    void shouldFetchExchangeRatesLatest() throws Exception{
+        //Given
+        RatesDto ratesDto = new RatesDto(4.5, 3.2, 1.4);
+        ExchangeRatesLatestDto exchangeRatesLatestDto = new ExchangeRatesLatestDto(true, 123, "eur", "2021-07-03", ratesDto);
+        when(exchangeRateFasade.fetchExchangeRatesLatest()).thenReturn(exchangeRatesLatestDto);
+        //When&Then
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/v1/exchangeRates/getLatestRates")
+                .contentType(MediaType.APPLICATION_JSON))
 //                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$[0].timestamp", Matchers.is(123)))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$[0].base", Matchers.is("eur")));
-//    }
+                .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp", Matchers.is(123)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.base", Matchers.is("eur")));
+    }
 
 }
