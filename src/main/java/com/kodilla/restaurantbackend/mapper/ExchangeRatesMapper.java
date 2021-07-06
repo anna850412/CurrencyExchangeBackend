@@ -55,21 +55,4 @@ public class ExchangeRatesMapper {
                 .collect(Collectors.toList());
     }
 
-    public List<ExchangeRatesLatest> mapToExchangeRatesLatestList(final List<ExchangeRatesLatestDto> exchangeRatesLatestDtoList) {
-        return exchangeRatesLatestDtoList.stream()
-                .map(this::mapToExchangeRatesLatest)
-                .collect(Collectors.toList());
-    }
-
-    public List<Rate> mapToList(final List<RatesDto> ratesListDto) {
-        return ratesListDto.stream()
-                .map(rate -> new Rate(rate.getPln(), rate.getUsd(), rate.getGbp()))
-                .collect(toList());
-    }
-
-    public List<RatesDto> mapToRatesDtoList(final List<Rate> ratesList) {
-        return ratesList.stream()
-                .map(rateDto -> new RatesDto(rateDto.getGbp(), rateDto.getPln(), rateDto.getUsd()))
-                .collect(toList());
-    }
 }

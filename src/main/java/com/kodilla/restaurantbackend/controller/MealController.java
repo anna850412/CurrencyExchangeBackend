@@ -1,7 +1,9 @@
 package com.kodilla.restaurantbackend.controller;
 
 import com.kodilla.restaurantbackend.client.MealClient;
-import com.kodilla.restaurantbackend.domain.*;
+import com.kodilla.restaurantbackend.domain.Meal;
+import com.kodilla.restaurantbackend.domain.MealDto;
+import com.kodilla.restaurantbackend.domain.MealsDto;
 import com.kodilla.restaurantbackend.exceptions.MealNotExistException;
 import com.kodilla.restaurantbackend.fasade.MealFacade;
 import com.kodilla.restaurantbackend.mapper.MealMapper;
@@ -12,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/meal")
@@ -33,14 +34,17 @@ public class MealController {
     public List<String> getAllCategories() {
         return tenDishesService.getAllCategories();
     }
+
     @GetMapping(value = "/get10Names")
     public List<String> getNamesOfTodaysDishes() {
         return tenDishesService.getNamesOfTodaysDishes();
     }
+
     @GetMapping(value = "/get10Countries")
     public List<String> getNamesOfTodaysCountires() {
         return tenDishesService.getCountryNames();
     }
+
     @GetMapping(value = "/getAllMeals")
     public List<MealDto> getAllMeals() {
 

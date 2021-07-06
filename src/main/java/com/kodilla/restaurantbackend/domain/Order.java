@@ -44,4 +44,7 @@ public class Order {
         this.user = user;
         this.orderDate = orderDate;
     }
+    public Order(User user) {
+        this.user = user;
+    }
 }

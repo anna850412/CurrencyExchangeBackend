@@ -26,28 +26,11 @@ public Meal mapFromMealExternalDtoToMeal(final MealExternalDto mealExternalDto){
             mealExternalDto.getStrYoutube()
     );
 }
-public List<MealExternalDto> mapToMealExtrenalDtoList(final List<Meal> mealList){
+public List<MealExternalDto> mapToMealExternalDtoList(final List<Meal> mealList){
     return (List<MealExternalDto>) mealList.stream()
 .map(meal -> new MealExternalDto(meal.getStrMeal(), meal.getStrCategory(), meal.getStrArea(), meal.getStrInstructions(), meal.getStrYoutube()))
 .collect(Collectors.toList());
 }
-public List<Meal> mapToMealList (final List<MealExternalDto> mealExternalDtoList){
-    return mealExternalDtoList.stream()
-            .map(meal -> new Meal(meal.getStrMeal(), meal.getStrCategory(), meal.getStrArea(), meal.getStrInstructions(), meal.getStrYoutube()))
-            .collect(Collectors.toList());
-}
-
-    public List<Category> mapToCategories(List<CategoriesDto> allCategories) {
-    return allCategories.stream()
-            .map(categoriesDto -> new Category(categoriesDto.getIdCategory(), categoriesDto.getStrCategory(), categoriesDto.getStrCategoryThumb(), categoriesDto.getStrCategoryDescription()))
-            .collect(Collectors.toList());
-    }
-
-    public List<CategoriesDto> mapToCategoriesDtoList(List<Category> categories) {
-    return categories.stream()
-            .map(category -> new CategoriesDto(category.getIdCategory(), category.getStrCategory(), category.getStrCategoryThumb(), category.getStrCategoryDescription()))
-            .collect(Collectors.toList());
-    }
 
     public MealDto mapFromMealToMealDto(Meal meal) {
     return new MealDto(
@@ -62,7 +45,5 @@ public List<Meal> mapToMealList (final List<MealExternalDto> mealExternalDtoList
     return mealList.stream()
             .map(meal -> new MealDto(meal.getStrMeal(), meal.getStrArea(), meal.getStrCategory(), meal.getStrYoutube(), meal.getStrInstructions()))
             .collect(Collectors.toList());
-
-
     }
 }

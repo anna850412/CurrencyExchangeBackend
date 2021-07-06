@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/cart")
 @RequiredArgsConstructor
 public class CartController {
-    private final CartService cartService;
-    private final CartMapper cartMapper;
-    @PostMapping(value = "/createCart", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createCart(@RequestBody CartDto cartDto){
-
-    }
+//    private final CartService cartService;
+//    private final CartMapper cartMapper;
+//    @PostMapping(value = "/createCart", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public void createCart(@RequestBody CartDto cartDto){
+//   }
 }

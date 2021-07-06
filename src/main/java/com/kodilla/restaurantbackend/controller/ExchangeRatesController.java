@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class ExchangeRatesController {
-        @Autowired
+    @Autowired
     private final ExchangeRateFasade exchangeRateFasade;
     private final ExchangeRatesService exchangeRatesService;
     private final ExchangeRatesMapper exchangeRatesMapper;
