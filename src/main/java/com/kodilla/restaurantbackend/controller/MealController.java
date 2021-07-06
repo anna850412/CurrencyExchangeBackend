@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/meal")
@@ -28,6 +29,10 @@ public class MealController {
         return tenDishesService.get10Recipients();
     }
 
+    @GetMapping(value = "/getAllCategories")
+    public List<Meal> getAllCategories() {
+        return tenDishesService.getAllCategories();
+    }
     @GetMapping(value = "/getAllMeals")
     public List<MealDto> getAllMeals() {
 

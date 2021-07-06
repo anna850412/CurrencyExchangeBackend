@@ -31,13 +31,6 @@ public class MealClient {
 
             MealsDto mealsResponse = restTemplate.getForObject(url, MealsDto.class);
             System.out.println();
-//            return Optional.ofNullable(mealsResponse)
-//                    .map(Arrays::asList)
-//                    .orElse(Collections.emptyList());
-//        } catch (RestClientException e) {
-//            LOGGER.error(e.getMessage(), e);
-//            return Collections.emptyList();
-//        }
             if (mealsResponse != null) {
                 return  mealsResponse;
             }
