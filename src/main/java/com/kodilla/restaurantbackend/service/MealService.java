@@ -2,8 +2,10 @@ package com.kodilla.restaurantbackend.service;
 
 import com.kodilla.restaurantbackend.client.MealClient;
 import com.kodilla.restaurantbackend.config.AdminConfig;
-import com.kodilla.restaurantbackend.domain.*;
-import com.kodilla.restaurantbackend.mapper.MealMapper;
+import com.kodilla.restaurantbackend.domain.CreatedMealDto;
+import com.kodilla.restaurantbackend.domain.Mail;
+import com.kodilla.restaurantbackend.domain.Meal;
+import com.kodilla.restaurantbackend.domain.MealDto;
 import com.kodilla.restaurantbackend.repository.MealRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,15 +24,12 @@ public class MealService {
     private final SimpleEmailService emailService;
     private final AdminConfig adminConfig;
 
-    public List<Meal> findAllMeals(){
+    public List<Meal> findAllMeals() {
         return mealRepository.findAll();
     }
-    public List<Meal> findAllClientsMeals(){
-        return tenDishesService.get10Recipients();
-    }
 
-    public List<CategoriesDto> getAllCategories() {
-        return mealClient.getCategories();
+    public List<Meal> findAllClientsMeals() {
+        return tenDishesService.get10Recipients();
     }
 
     public CreatedMealDto createMeal(MealDto mealDto) {
@@ -38,7 +37,7 @@ public class MealService {
         ofNullable(newMeal).ifPresent(rate ->
                 emailService.send(new Mail(adminConfig.getAdminMail(),
                         SUBJECT,
-                        "New meal with name : " +  mealDto.getStrMeal()
+                        "New meal with name : " + mealDto.getStrMeal()
                                 + "from category" + mealDto.getStrCategory()
                                 + "and from country" + mealDto.getStrArea() +
                                 "has been created"
@@ -46,7 +45,8 @@ public class MealService {
 
         return newMeal;
     }
-    public Meal saveMeal(final Meal meal){
+
+    public Meal saveMeal(final Meal meal) {
         return mealRepository.save(meal);
     }
 }

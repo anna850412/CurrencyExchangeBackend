@@ -1,6 +1,5 @@
 package com.kodilla.restaurantbackend.validator;
 
-import com.kodilla.restaurantbackend.domain.Category;
 import com.kodilla.restaurantbackend.domain.Meal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,30 +10,25 @@ import java.util.List;
 @Component
 public class MealValidator {
     private static final Logger LOGGER = LoggerFactory.getLogger(MealValidator.class);
-    public Meal validateMeal(final Meal meal){
-        if(meal!=null){
+
+    public void validateMeal(final Meal meal) {
+        if (meal != null) {
             LOGGER.info("This meal is proper to be order");
         } else {
             LOGGER.info("Object Meal is null");
         }
-        return meal;
+
     }
+
     public List<Meal> validateMealList(final List<Meal> meals) {
-        for(Meal meal: meals) {
+        for (Meal meal : meals) {
             if (meal != null) {
                 LOGGER.info("This meal list is proper to be order");
             } else {
                 LOGGER.info("Object Meal list is null");
             }
         }
-            return meals;
-        }
-
-    public List<Category> validateCategory(List<Category> categories) {
-        if(categories != null){
-            LOGGER.info("Proper category");
-        } else {
-            LOGGER.info("This category doesn't exist");
-        } return categories;
+        return meals;
     }
+
 }

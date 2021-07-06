@@ -47,16 +47,6 @@ public class MealClient {
         return url;
     }
 
-    public List<CategoriesDto> getCategories() {
-        URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint())
-                .queryParam("categories", mealConfig.getMealCategories())
-                .encode().build().toUri();
-        CategoriesDto[] categoriesResponse = restTemplate.getForObject(url, CategoriesDto[].class);
-        return Optional.ofNullable(categoriesResponse)
-                .map(Arrays::asList)
-                .orElse(Collections.emptyList());
-    }
-
     public CreatedMealDto createNewMeal(MealDto mealDto) {
         URI url = UriComponentsBuilder.fromHttpUrl(mealConfig.getMealEndPoint() + mealConfig.getMealRandom())
                 .build().encode().toUri();
