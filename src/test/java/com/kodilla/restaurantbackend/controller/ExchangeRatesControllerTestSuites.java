@@ -46,5 +46,4 @@ public class ExchangeRatesControllerTestSuites {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
     }
-
 }

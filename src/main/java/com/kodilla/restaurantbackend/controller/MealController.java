@@ -1,6 +1,7 @@
 package com.kodilla.restaurantbackend.controller;
 
 import com.kodilla.restaurantbackend.client.MealClient;
+import com.kodilla.restaurantbackend.domain.CreatedMealDto;
 import com.kodilla.restaurantbackend.domain.Meal;
 import com.kodilla.restaurantbackend.domain.MealDto;
 import com.kodilla.restaurantbackend.domain.MealsDto;
@@ -64,10 +65,10 @@ public class MealController {
 
     @PostMapping(value = "/createMeal", consumes = MediaType.APPLICATION_JSON_VALUE)
     public MealDto createMeal(@RequestBody MealDto mealDto) throws MealNotExistException {
-        System.out.println(mealDto);
         Meal meal = mealMapper.mapFromMealDtoToMeal(mealDto);
         mealService.saveMeal(meal);
         return mealDto;
+
     }
 
 

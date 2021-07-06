@@ -13,6 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
@@ -31,6 +32,10 @@ public class UserServiceTestSuite {
         userService.saveUser(user);
         //Then
         verify(userRepository, times (1)).save(user);
+        assertEquals("name", user.getUsername());
+        assertEquals("login", user.getLogin());
+        assertEquals("mail", user.getMail());
+
     }
     @Test
     void testUserServiceFindAllUsers(){
