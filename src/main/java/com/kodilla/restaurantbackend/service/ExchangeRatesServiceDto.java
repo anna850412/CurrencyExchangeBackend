@@ -27,11 +27,10 @@ public class ExchangeRatesServiceDto {
         ofNullable(newRate).ifPresent(rate ->
                 emailService.send(new Mail(adminConfig.getAdminMail(),
                         SUBJECT,
-                        "New rate contains: " + "PLN " + ratesDto.getPln()
-                                + "USD" + ratesDto.getUsd()
-                                + "GBP" + ratesDto.getGbp() +
+                        "New rate, which contains: " + " " + "PLN " +  " " + ratesDto.getPln()
+                                + " " + "USD" + " " + ratesDto.getUsd()
+                                + " " + "GBP" + " " + ratesDto.getGbp() + " " +
                                 "has been created"
-//                        , null
                 )));
         return newRate;
         }

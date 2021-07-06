@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Data
@@ -30,31 +29,48 @@ public class TenDishesService {
             MealsDto randomMeals = mealClient.getRandomMeal();
             MealExternalDto mealExtDto = randomMeals.meals.get(0);
             Meal meal = mealMapper.mapFromMealExternalDtoToMeal(mealExtDto);
-//                    new Meal(
-//                    mealExtDto.getStrMeal(),
-//                    mealExtDto.getStrCategory(),
-//                    mealExtDto.getStrArea(),
-//                    mealExtDto.getStrInstructions(),
-//                    mealExtDto.getStrYoutube());
             mealRepository.save(meal);
             tenMeals.add(meal);
         }
         return tenMeals;
     }
-/*
-    public List<Meal> getAllCategories() {
-        List<Meal> categories = new ArrayList<>();
+
+    public List<String> getAllCategories() {
+
+        List<String> categories = new ArrayList<>();
         for (int i = 0; i <= 10; i++) {
             MealsDto randomMeals = mealClient.getRandomMeal();
-            List<MealExternalDto> randomCategories = randomMeals.getMeals().stream().map(n -> n.getStrCategory()).collect(Collectors.toList());
-            MealExternalDto mealExtDto = randomCategories.get(0);
-            Meal meal = mealMapper.mapFromMealExternalDtoToMeal(mealExtDto);
-            categories.add(meal);
+            MealExternalDto mealExtDto = randomMeals.meals.get(0);
+            String strCategory = mealExtDto.getStrCategory();
+            categories.add(strCategory);
         }
         return categories;
     }
 
- */
+    public List<String> getNamesOfTodaysDishes() {
+
+        List<String> names = new ArrayList<>();
+        for (int i = 0; i <= 10; i++) {
+            MealsDto randomMeals = mealClient.getRandomMeal();
+            MealExternalDto mealExtDto = randomMeals.meals.get(0);
+            String strMeal = mealExtDto.getStrMeal();
+            names.add(strMeal);
+        }
+        return names;
+    }
+
+    public List<String> getCountryNames() {
+        List<String> countries = new ArrayList<>();
+        for (int i = 0; i <= 10; i++) {
+            MealsDto randomMeal = mealClient.getRandomMeal();
+            MealExternalDto mealExtDto = randomMeal.meals.get(0);
+            String strCountry = mealExtDto.getStrArea();
+            countries.add(strCountry);
+        }
+        return countries;
+    }
+
+
 }
 
 

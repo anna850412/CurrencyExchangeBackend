@@ -56,7 +56,6 @@ public class ExchangeRatesController {
     @PutMapping(value = "/rates")
     public ExchangeRatesLatest updateRates(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
 
-
         ExchangeRatesLatest exchangeRatesLatest = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto);
         Rate rate = exchangeRatesLatest.getRate();
         ratesService.saveRates(rate);
@@ -64,20 +63,6 @@ public class ExchangeRatesController {
         return exchangeRatesLatest;
     }
 
-    /*
-        @RequestMapping(method = RequestMethod.POST, value = "/createRates", consumes = MediaType.APPLICATION_JSON_VALUE)
-        public Rate createRate(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
-            Rate rate = exchangeRatesMapper.mapToRates(exchangeRatesLatestDto.getRatesDto());
-            ratesService.saveRates(rate);
-
-            ExchangeRatesLatest exchangeRatesLatest = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesLatestDto);
-            exchangeRatesService.saveLatestExchangeRate(exchangeRatesLatest);
-    //        exchangeRatesLatest.setRateList((List<Rate>) exchangeRatesMapper.mapToRatesDto(rate));
-            exchangeRatesLatest.setRate(rate);
-
-     return rate;
-        }
-        */
     @RequestMapping(method = RequestMethod.POST, value = "/createExchangeRates", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ExchangeRatesLatestDto createRate(@RequestBody ExchangeRatesLatestDto exchangeRatesLatestDto) {
         Rate rate = exchangeRatesMapper.mapToRates(exchangeRatesLatestDto.getRatesDto());

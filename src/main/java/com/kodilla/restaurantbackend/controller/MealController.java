@@ -29,10 +29,18 @@ public class MealController {
         return tenDishesService.get10Recipients();
     }
 
-//    @GetMapping(value = "/getAllCategories")
-//    public List<Meal> getAllCategories() {
-//        return tenDishesService.getAllCategories();
-//    }
+    @GetMapping(value = "/get10Categories")
+    public List<String> getAllCategories() {
+        return tenDishesService.getAllCategories();
+    }
+    @GetMapping(value = "/get10Names")
+    public List<String> getNamesOfTodaysDishes() {
+        return tenDishesService.getNamesOfTodaysDishes();
+    }
+    @GetMapping(value = "/get10Countries")
+    public List<String> getNamesOfTodaysCountires() {
+        return tenDishesService.getCountryNames();
+    }
     @GetMapping(value = "/getAllMeals")
     public List<MealDto> getAllMeals() {
 
@@ -50,20 +58,12 @@ public class MealController {
         return mealExternalDto;
     }
 
-    @GetMapping(value = "/getCategories")
-    public List<CategoriesDto> getCategory() {
-        List<CategoriesDto> categoriesList = mealClient.getCategories();
-        categoriesList.
-                forEach(categoriesDto ->
-                        System.out.println("category: " + categoriesDto.getStrCategory() +
-                                "description: " + categoriesDto.getStrCategoryDescription()));
-        return mealFacade.getAllCategories();
-    }
-
     @PostMapping(value = "/createMeal", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public CreatedMealDto createMeal(@RequestBody MealDto mealDto) throws MealNotExistException {
-        return mealFacade.createMeal(mealDto);
-
+    public MealDto createMeal(@RequestBody MealDto mealDto) throws MealNotExistException {
+        System.out.println(mealDto);
+        Meal meal = mealMapper.mapFromMealDtoToMeal(mealDto);
+        mealService.saveMeal(meal);
+        return mealDto;
     }
 
 

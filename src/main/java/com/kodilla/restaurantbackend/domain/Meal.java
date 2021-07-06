@@ -29,9 +29,9 @@ public class Meal {
     private String strYoutube;
     @Column(name = "PRICE")
     private Double price;
-    @ManyToOne
-    @JoinColumn(name = "ROOTS_ID")
-    private Root root;
+//    @ManyToOne
+//    @JoinColumn(name = "ROOTS_ID")
+//    private Root root;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "JOIN_MEAL_ORDER",
@@ -54,5 +54,6 @@ public class Meal {
            this.strArea = strArea;
            this.strInstructions = strInstructions;
            this.strYoutube = strYoutube;
+           this.price = PriceCalculator.calculatePrice(100.0, strCategory);
     }
 }

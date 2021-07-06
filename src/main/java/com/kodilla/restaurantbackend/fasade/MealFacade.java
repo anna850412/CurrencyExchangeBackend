@@ -4,6 +4,8 @@ import com.kodilla.restaurantbackend.domain.*;
 import com.kodilla.restaurantbackend.mapper.MealMapper;
 import com.kodilla.restaurantbackend.service.MealService;
 import com.kodilla.restaurantbackend.validator.MealValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +13,7 @@ import java.util.List;
 
 @Component
 public class MealFacade {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MealFacade.class);
     @Autowired
     private MealService mealService;
     @Autowired
@@ -23,14 +26,10 @@ public class MealFacade {
         List<Meal> filteredMeals = mealValidator.validateMealList(meals);
         return mealMapper.mapToMealExtrenalDtoList(filteredMeals);
     }
-    public List<CategoriesDto> getAllCategories(){
-        List<Category> categories = mealMapper.mapToCategories(mealService.getAllCategories());
-        List<Category> filteredCategories = mealValidator.validateCategory(categories);
-        return mealMapper.mapToCategoriesDtoList(filteredCategories);
-    }
+
     public CreatedMealDto createMeal(final MealDto mealDto) {
         Meal meal = mealMapper.mapFromMealDtoToMeal(mealDto);
         mealValidator.validateMeal(meal);
         return mealService.createMeal(mealMapper.mapFromMealToMealDto(meal));
-    }
+}
 }

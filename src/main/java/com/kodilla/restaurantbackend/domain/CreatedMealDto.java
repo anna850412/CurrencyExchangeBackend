@@ -7,15 +7,15 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreatedMealDto {
-    @JsonProperty("mealName")
+    @JsonProperty("strName")
     private String mealName;
-    @JsonProperty("mealCategory")
+    @JsonProperty("strCategory")
     private String mealCategory;
-    @JsonProperty("mealArea")
+    @JsonProperty("strArea")
     private String mealArea;
-    @JsonProperty("mealInstructions")
+    @JsonProperty("strInstructions")
     private String mealInstructions;
-    @JsonProperty("mealYoutube")
+    @JsonProperty("strYoutube")
     private String mealYoutube;
 //    @JsonProperty("mealName")
 //    private double mealPrice;

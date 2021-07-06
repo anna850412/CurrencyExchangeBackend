@@ -12,13 +12,16 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CartService {
     private final CartRepository cartRepository;
-    public Cart saveCart(Cart cart){
+
+    public Cart saveCart(Cart cart) {
         return cartRepository.save(cart);
     }
-    public List<Cart> findAllCarts(){
+
+    public List<Cart> findAllCarts() {
         return cartRepository.findAll();
     }
-    Optional<Cart> findCartById(Long cartId){
+
+    Optional<Cart> findCartById(Long cartId) {
         return cartRepository.findById(cartId);
     }
 }

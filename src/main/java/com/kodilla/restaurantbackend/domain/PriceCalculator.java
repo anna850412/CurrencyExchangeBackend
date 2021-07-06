@@ -7,40 +7,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Component
 public class PriceCalculator {
 
-    private MealExternalDto mealExternalDto;
-    public Double calculatePrice(Double price){
-        if(mealExternalDto.getStrCategory().equals("Dessert")){
+    public static Double calculatePrice(Double price, String category){
+        if(category.equals("Dessert")){
             return 10.0;
-        } else if (mealExternalDto.getStrCategory().equals("Chicken")){
+        } else if (category.equals("Chicken")){
             return 12.0;
-        } else if (mealExternalDto.getStrCategory().equals("Lamb")){
+        } else if (category.equals("Lamb")){
             return 13.0;
-        } else if (mealExternalDto.getStrCategory().equals("Pork")){
+        } else if (category.equals("Pork")){
             return 14.0;
-        } else if(mealExternalDto.getStrCategory().equals("Beef")){
+        } else if(category.equals("Beef")){
             return 15.0;
-        } else if (mealExternalDto.getStrCategory().equals("Seafood")){
+        } else if (category.equals("Seafood")){
             return 20.0;
-        } else if (mealExternalDto.getStrCategory().equals("Breakfast")){
+        } else if (category.equals("Breakfast")){
             return 11.0;
-        } else if (mealExternalDto.getStrCategory().equals("Miscellaneous")){
+        } else if (category.equals("Miscellaneous")){
             return 18.0;
-        }else if (mealExternalDto.getStrCategory().equals("Pasta")){
+        }else if (category.equals("Pasta")){
             return 22.0;
-        } else if (mealExternalDto.getStrCategory().equals("Vegan")){
+        } else if (category.equals("Vegan")){
             return 8.0;
-        } else if (mealExternalDto.getStrCategory().equals("Vegetarian")){
+        } else if (category.equals("Vegetarian")){
             return 9.0;
-        } else if(mealExternalDto.getStrCategory().equals("Goat")){
+        } else if(category.equals("Goat")){
             return 25.0;
-        } else if (mealExternalDto.getStrCategory().equals("Starter")){
+        } else if (category.equals("Starter")){
             return 16.0;
-        } else if (mealExternalDto.getStrCategory().equals("Side")){
+        } else if (category.equals("Side")){
             return 17.0;
         } return price;
     }

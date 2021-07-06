@@ -17,14 +17,6 @@ public class MealDto {
     private String strInstructions;
     private String strYoutube;
 
-    public MealDto(Long clientIdMeal, String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube) {
-        this.clientIdMeal = clientIdMeal;
-        this.strMeal = strMeal;
-        this.strCategory = strCategory;
-        this.strArea = strArea;
-        this.strInstructions = strInstructions;
-        this.strYoutube = strYoutube;
-    }
 
     public MealDto(String strMeal, String strCategory, String strArea, String strInstructions, String strYoutube) {
         this.strMeal = strMeal;
