@@ -11,6 +11,5 @@ public class RatesService {
     private final RatesRepository ratesRepository;
     public Rate saveRates(final Rate rate) {
         return ratesRepository.save(rate);
-
     }
 }

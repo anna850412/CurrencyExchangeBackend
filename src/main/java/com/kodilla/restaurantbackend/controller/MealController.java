@@ -1,7 +1,6 @@
 package com.kodilla.restaurantbackend.controller;
 
 import com.kodilla.restaurantbackend.client.MealClient;
-import com.kodilla.restaurantbackend.domain.CreatedMealDto;
 import com.kodilla.restaurantbackend.domain.Meal;
 import com.kodilla.restaurantbackend.domain.MealDto;
 import com.kodilla.restaurantbackend.domain.MealsDto;
@@ -70,6 +69,4 @@ public class MealController {
         return mealDto;
 
     }
-
-
 }

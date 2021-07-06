@@ -19,6 +19,4 @@ public class CreatedMealDto {
     private String mealInstructions;
     @JsonProperty("strYoutube")
     private String mealYoutube;
-//    @JsonProperty("mealName")
-//    private double mealPrice;
 }

@@ -1,9 +1,6 @@
 package com.kodilla.restaurantbackend.controller;
 
 import com.kodilla.restaurantbackend.client.MealClient;
-import com.kodilla.restaurantbackend.domain.CreatedMealDto;
-import com.kodilla.restaurantbackend.domain.Meal;
-import com.kodilla.restaurantbackend.domain.MealDto;
 import com.kodilla.restaurantbackend.fasade.MealFacade;
 import com.kodilla.restaurantbackend.mapper.MealMapper;
 import com.kodilla.restaurantbackend.service.MealService;
@@ -19,11 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringJUnitWebConfig
@@ -55,17 +49,5 @@ public class MealControllerTestSuite {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
     }
-
-    @Test
-    void shouldCreateMeal(){
-        //Given
-        CreatedMealDto createdMealDto = new CreatedMealDto("name", "cat", "area", "inst", "yt");
-        MealDto mealDto = new MealDto("nameDto", "categoryDto", "areaDto","instructionsDto", "ytDto");
-        when(mealFacade.createMeal(any(MealDto.class))).thenReturn(createdMealDto);
-
-        //When&Then
-    }
-
-
 }
 

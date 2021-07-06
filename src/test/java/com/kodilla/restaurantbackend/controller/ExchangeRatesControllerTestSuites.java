@@ -1,9 +1,7 @@
 package com.kodilla.restaurantbackend.controller;
 
-import com.kodilla.restaurantbackend.domain.ExchangeRatesLatest;
-import com.kodilla.restaurantbackend.domain.ExchangeRatesLatestDto;
-import com.kodilla.restaurantbackend.domain.Rate;
-import com.kodilla.restaurantbackend.domain.RatesDto;
+import com.google.gson.Gson;
+import com.kodilla.restaurantbackend.domain.*;
 import com.kodilla.restaurantbackend.fasade.ExchangeRateFasade;
 import com.kodilla.restaurantbackend.service.ExchangeRatesService;
 import org.hamcrest.Matchers;
@@ -46,4 +44,5 @@ public class ExchangeRatesControllerTestSuites {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
     }
+
 }
