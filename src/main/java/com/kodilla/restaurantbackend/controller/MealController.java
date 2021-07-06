@@ -29,10 +29,10 @@ public class MealController {
         return tenDishesService.get10Recipients();
     }
 
-    @GetMapping(value = "/getAllCategories")
-    public List<Meal> getAllCategories() {
-        return tenDishesService.getAllCategories();
-    }
+//    @GetMapping(value = "/getAllCategories")
+//    public List<Meal> getAllCategories() {
+//        return tenDishesService.getAllCategories();
+//    }
     @GetMapping(value = "/getAllMeals")
     public List<MealDto> getAllMeals() {
 

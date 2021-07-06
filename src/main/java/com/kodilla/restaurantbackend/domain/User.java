@@ -12,21 +12,18 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "USERS")
+@Table(name = "USER")
 public class User {
     @Id
     @GeneratedValue
     @Column(name = "USER_ID", unique = true)
     private Long id;
-    @NotNull
     @Column(name = "USERNAME", unique = true)
     private String username;
-    @NotNull
     @Column(name = "LOGIN", unique = true)
     private String login;
-    @NotNull
-    @Column(name = "EMAIL", unique = true)
-    private String eMail;
+    @Column(name = "EMAIL")
+    private String mail;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name ="CART_ID")
     private Cart cart;
@@ -37,4 +34,10 @@ public class User {
             fetch = FetchType.LAZY
     )
     private List<Order> listOfOrders = new ArrayList<>();
+
+    public User(String username, String login, String mail) {
+        this.username = username;
+        this.login = login;
+        this.mail = mail;
+    }
 }
