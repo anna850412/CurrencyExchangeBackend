@@ -1,6 +1,8 @@
 package com.kodilla.restaurantbackend.controller;
 
 import com.kodilla.restaurantbackend.client.MealClient;
+import com.kodilla.restaurantbackend.domain.Meal;
+import com.kodilla.restaurantbackend.domain.MealDto;
 import com.kodilla.restaurantbackend.fasade.MealFacade;
 import com.kodilla.restaurantbackend.mapper.MealMapper;
 import com.kodilla.restaurantbackend.service.MealService;
@@ -16,17 +18,19 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringJUnitWebConfig
 @WebMvcTest(MealController.class)
 public class MealControllerTestSuite {
     @Autowired
     private MockMvc mockMvc;
-    @MockBean
-    private MealFacade mealFacade;
     @MockBean
     private MealClient mealClient;
     @MockBean
@@ -43,11 +47,39 @@ public class MealControllerTestSuite {
         //Given
         when(mealService.findAllMeals()).thenReturn(Collections.emptyList());
         //When@Then
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/v1/meal/getAllMeals")
+        mockMvc.perform(get("/v1/meal/getAllMeals")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
+    }
+    @Test
+    void testGet10Meals() throws Exception {
+        //Given
+        List<Meal> mealList= new ArrayList<>();
+        Meal meal = new Meal("name1", "category1", "area1", "instr1", "yt1");
+        mealList.add(meal);
+        List<MealDto> mealDtoList = new ArrayList<>();
+        MealDto mealDto1 = new MealDto("name", "category", "area", "instruction", "yt" );
+        MealDto mealDto2 = new MealDto("name2", "category2", "area2", "instruction2", "yt2" );
+        mealDtoList.add(mealDto1);
+        mealDtoList.add(mealDto2);
+        when(mealMapper.mapToMealDtoList(mealList)).thenReturn(mealDtoList);
+        when(tenDishesService.get10Recipients()).thenReturn(
+//                mealMapper.mapFromMealDtoListToMealList(
+                        mealDtoList
+//                )
+        );
+        //When&Then
+        mockMvc.perform(
+                get("/v1/meal/get10Meals")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.strMeal", Matchers.is("name")));
+            }
+    @Test
+    void testGet10Categories(){
+        //Given
+        //When&Then
     }
 }
 

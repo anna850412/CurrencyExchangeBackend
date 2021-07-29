@@ -6,6 +6,7 @@ import com.kodilla.restaurantbackend.domain.CreatedMealDto;
 import com.kodilla.restaurantbackend.domain.Mail;
 import com.kodilla.restaurantbackend.domain.Meal;
 import com.kodilla.restaurantbackend.domain.MealDto;
+import com.kodilla.restaurantbackend.mapper.MealMapper;
 import com.kodilla.restaurantbackend.repository.MealRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,14 @@ public class MealService {
     private final TenDishesService tenDishesService;
     private final SimpleEmailService emailService;
     private final AdminConfig adminConfig;
+    private final MealMapper mealMapper;
 
     public List<Meal> findAllMeals() {
         return mealRepository.findAll();
     }
 
-    public List<Meal> findAllClientsMeals() {
-        return tenDishesService.get10Recipients();
+    public List<MealDto> findAllClientsMeals() {
+        return mealMapper.mapToMealDtoList(tenDishesService.get10Recipients());
     }
 
     public CreatedMealDto createMeal(MealDto mealDto) {

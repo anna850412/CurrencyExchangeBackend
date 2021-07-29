@@ -2,6 +2,7 @@ package com.kodilla.restaurantbackend.validator;
 
 import com.kodilla.restaurantbackend.domain.ExchangeRatesLatest;
 import com.kodilla.restaurantbackend.domain.Rate;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RatesService {
     private final RatesRepository ratesRepository;
-    public Rate saveRates(final Rate rate) {
+    public Rate saveRates(Rate rate) {
         return ratesRepository.save(rate);
     }
 }

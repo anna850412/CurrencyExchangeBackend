@@ -20,7 +20,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MealController {
     private final MealService mealService;
-    private final MealFacade mealFacade;
     private final MealClient mealClient;
     private final MealMapper mealMapper;
     private final TenDishesService tenDishesService;
@@ -52,7 +51,7 @@ public class MealController {
     }
 
     @GetMapping(value = "/findAllClientsMeals")
-    public List<Meal> findAllClientsMeals() {
+    public List<MealDto> findAllClientsMeals() {
         return mealService.findAllClientsMeals();
     }
 
@@ -63,10 +62,9 @@ public class MealController {
     }
 
     @PostMapping(value = "/createMeal", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public MealDto createMeal(@RequestBody MealDto mealDto) throws MealNotExistException {
+    public MealDto createMeal(@RequestBody MealDto mealDto) {
         Meal meal = mealMapper.mapFromMealDtoToMeal(mealDto);
         mealService.saveMeal(meal);
         return mealDto;
-
     }
 }

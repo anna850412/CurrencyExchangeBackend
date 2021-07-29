@@ -4,20 +4,19 @@ import com.kodilla.restaurantbackend.domain.*;
 import com.kodilla.restaurantbackend.mapper.ExchangeRatesMapper;
 import com.kodilla.restaurantbackend.service.ExchangeRatesServiceDto;
 import com.kodilla.restaurantbackend.validator.ExchangeRatesValidator;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class ExchangeRateFasade {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExchangeRateFasade.class);
-    @Autowired
-    private ExchangeRatesMapper exchangeRatesMapper;
-    @Autowired
-    private ExchangeRatesValidator exchangeRatesValidator;
-    @Autowired
-    private ExchangeRatesServiceDto exchangeRatesServiceDto;
+    private final ExchangeRatesMapper exchangeRatesMapper;
+    private final ExchangeRatesValidator exchangeRatesValidator;
+    private final ExchangeRatesServiceDto exchangeRatesServiceDto;
 
     public ExchangeRatesLatestDto fetchExchangeRatesLatest() {
         ExchangeRatesLatest exchangeRatesLatests = exchangeRatesMapper.mapToExchangeRatesLatest(exchangeRatesServiceDto.getAllRatesDto());

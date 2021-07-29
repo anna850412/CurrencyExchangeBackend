@@ -54,4 +54,9 @@ public class ExchangeRateFasadeTestSuites {
         assertEquals(3.0, ratesDto.getUsd());
         assertEquals(4.0, ratesDto.getGbp());
     }
+    @Test
+
+    void testFetchExchangeRatesLatest(){
+
+    }
 }

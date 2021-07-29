@@ -38,7 +38,7 @@ import javax.validation.constraints.NotNull;
 //            fetch = FetchType.LAZY
 //    )
 //    private List<Rate> rateList;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "RATES_ID")
     private Rate rate;
 

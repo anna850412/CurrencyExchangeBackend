@@ -4,6 +4,8 @@ import com.kodilla.restaurantbackend.config.ExchangeRatesConfig;
 import com.kodilla.restaurantbackend.domain.CreatedRateDto;
 import com.kodilla.restaurantbackend.domain.ExchangeRatesLatestDto;
 import com.kodilla.restaurantbackend.domain.RatesDto;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
