@@ -57,20 +57,24 @@ public class MealControllerTestSuite {
         //Given
         List<Meal> mealList= new ArrayList<>();
         Meal meal = new Meal("name1", "category1", "area1", "instr1", "yt1");
+        Meal meal2 = new Meal("name2", "category2", "area2", "instr2", "yt2");
         mealList.add(meal);
+        mealList.add(meal2);
         List<MealDto> mealDtoList = new ArrayList<>();
         MealDto mealDto1 = new MealDto("name", "category", "area", "instruction", "yt" );
         MealDto mealDto2 = new MealDto("name2", "category2", "area2", "instruction2", "yt2" );
         mealDtoList.add(mealDto1);
         mealDtoList.add(mealDto2);
         when(mealMapper.mapToMealDtoList(mealList)).thenReturn(mealDtoList);
-        when(tenDishesService.get10Recipients()).thenReturn(mealMapper.mapFromMealDtoListToMealList(mealDtoList));
+        when(tenDishesService.get10Recipients()).thenReturn(  new ArrayList <Meal>()
+//                mealMapper.mapFromMealDtoListToMealList(mealDtoList)
+        );
         //When&Then
         mockMvc.perform(
                 get("/v1/meal/get10Meals")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.strMeal", Matchers.is("name")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.strMeal", Matchers.is("name1")));
             }
     @Test
     void testGet10Categories(){
