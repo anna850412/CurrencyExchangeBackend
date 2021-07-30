@@ -64,11 +64,7 @@ public class MealControllerTestSuite {
         mealDtoList.add(mealDto1);
         mealDtoList.add(mealDto2);
         when(mealMapper.mapToMealDtoList(mealList)).thenReturn(mealDtoList);
-        when(tenDishesService.get10Recipients()).thenReturn(
-//                mealMapper.mapFromMealDtoListToMealList(
-                        mealDtoList
-//                )
-        );
+        when(tenDishesService.get10Recipients()).thenReturn(mealMapper.mapFromMealDtoListToMealList(mealDtoList));
         //When&Then
         mockMvc.perform(
                 get("/v1/meal/get10Meals")
